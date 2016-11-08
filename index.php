@@ -15,21 +15,36 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse animated slideDown">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Estacionamiento App</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Nuevo Vehiculo</a></li>
-      <li><a href="#">Grilla de Vehiculos</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
+      <li class="dropdown active"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Balances</a></li>
           <li><a href="#">Adm. de Usuarios</a></li>
-          <li><a href="#">Page 1-3</a></li>
+          <li class="divider"></li>
+          <li class="dropdown-submenu">
+            <a tabindex="-1" href="#">Hover me for more options</a>
+            <ul class="dropdown-menu">
+              <li><a tabindex="-1" href="#">Second level</a></li>
+              <li class="dropdown-submenu">
+                <a href="#">Even More..</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">3rd level</a></li>
+                  <li><a href="#">3rd level</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Second level</a></li>
+              <li><a href="#">Second level</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
+      <li><a onclick= "Frm('NuevoAuto')">Nuevo Vehiculo</a></li>
+      <li><a onclick="Frm('Estacionamiento')">Grilla de Vehiculos</a></li>
     </ul>
     <div id = "frmUsuario">
       <ul class="nav navbar-nav navbar-right">
@@ -73,9 +88,9 @@
   </div>   
 </nav>
   
-<div class="container">
-  <h3>Navbar With Dropdown</h3>
-  <p>This example adds a dropdown menu for the "Page 1" button in the navigation bar.</p>
+<div id="cuerpo">
+  <!--<h3>Navbar With Dropdown</h3>
+  <p>This example adds a dropdown menu for the "Page 1" button in the navigation bar.</p>-->
 </div>
 
 </body>

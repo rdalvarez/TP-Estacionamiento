@@ -6,7 +6,6 @@ $(document).ready(function(){
 });
 
 function Frm(queHago){
-    var queHago = queHago;
     var pagina = "nexo.php";
 
     $.ajax({
@@ -18,11 +17,12 @@ function Frm(queHago){
     })
     .then(
         function bien(retorno){
-            $("#informe").html(retorno);
+            $("#cuerpo").html(retorno);
         }
         ,function error(jqXHR, textStatus, errorThrown){
 
-            $("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
         }
     );
 }
