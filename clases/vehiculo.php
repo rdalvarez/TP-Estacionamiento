@@ -1,5 +1,5 @@
 <?php
-require_once('AccesoDatos');
+require_once 'AccesoDatos.php';
 /**
 *  CLASE VEHICULO
 */
@@ -33,7 +33,7 @@ public function __construct($id=NULL){
 		$obj = Vehiculo::TraerUnVehiculo($id);
 		$this->id = $obj->GetId();
 		$this->patente = $obj->GetPatente();
-		$this->estacionado =  $obj->GetEstacionado();s
+		$this->estacionado =  $obj->GetEstacionado();
 		$this->fecha = $obj->GetFecha();
 		$this->hora = $obj->GetHora();
 	}
@@ -88,7 +88,7 @@ public function __construct($id=NULL){
 		return $vehiculoBuscado;					
 	}
 	
-	public static function TraerTodosLosVehiculo()	{
+	public static function TraerTodosLosVehiculos()	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("select * from vehiculos");
 		$consulta->execute();			
@@ -96,12 +96,8 @@ public function __construct($id=NULL){
 		return $arrVehiculos;
 	}
 
-	public function mostrarDatos()	{
-	  	return "Metodo mostar:".$this->titulo."  ".$this->cantante."  ".$this->año;
-	}
-
 	public function ToString(){
-		return $this->id."-".$this->patente."-".$this->estacionado."-".$this->fecha."-".$this->hora."\r\n";
+		return $this->id." - ".$this->patente." - ".$this->estacionado." - ".$this->fecha." - ".$this->hora."\r\n";
 	}
 }
 
