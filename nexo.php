@@ -1,9 +1,10 @@
 <?php 
 switch ($_POST['queHago']) {
-	case 'NuevoAuto':
-			include("partes/FrmAltaAuto.php");
+	case 'FrmNuevoVehiculo':
+		include("partes/FrmNuevoVehiculo.php");
 		break;
-	case '':
+	case 'FrmIngreso':
+		include("partes/FrmIngreso.php");
 		break;
 	case '':
 		break;

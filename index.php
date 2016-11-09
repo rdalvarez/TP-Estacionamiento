@@ -43,48 +43,49 @@
           </li>
         </ul>
       </li>
-      <li><a onclick= "Frm('NuevoAuto')">Nuevo Vehiculo</a></li>
-      <li><a onclick="Frm('Estacionamiento')">Grilla de Vehiculos</a></li>
+      <li><a onclick= "FrmNuevoVehiculo()">Nuevo Vehiculo</a></li>
+      <li><a onclick="FrmEstacionamiento()">Grilla de Vehiculos</a></li>
     </ul>
-    <div id = "frmUsuario">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://www.jquery2dotnet.com">Sign Up</a></li>
         <li class="dropdown">
-          <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+          <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Iniciar Session <b class="caret"></b></a>
           <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-            <li>
-              <div class="row">
-                <div class="col-md-12">
-                  <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                    <div class="form-group">
-                      <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-                    </div>
-                    <div class="form-group">
-                      <label class="sr-only" for="exampleInputPassword2">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                    </div>
-                    <div class="checkbox">
-                       <label>
-                       <input type="checkbox"> Remember me
-                       </label>
-                    </div>
-                    <div class="form-group">
-                       <button type="submit" class="btn btn-success btn-block">Sign in</button>
-                    </div>
-                  </form>
+
+              <li>
+                <div class="row">
+                  <div class="col-md-12">
+                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                      <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail2">Correo electrónico</label>
+                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Correo electrónico" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword2">Contraseña</label>
+                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Contraseña" required>
+                      </div>
+                      <div class="checkbox">
+                         <label>
+                         <input type="checkbox"> Recordarme
+                         </label>
+                      </div>
+                      <div class="form-group">
+                         <button type="submit" class="btn btn-success btn-block">Entrar</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li class="divider"></li>
-            <li>
-               <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Sign In with Google">
-               <input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
-            </li>
+              </li>
+              <li class="divider"></li>
+              <li>
+                 <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Ingresar como Usuario">
+                 <input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Ingresar como Administrador">
+              </li>
+
           </ul>
         </li>
-      </ul>  
-    </div>
+
+      </ul> 
   </div>   
 </nav>
   
