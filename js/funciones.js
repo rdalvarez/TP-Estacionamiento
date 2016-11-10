@@ -13,7 +13,7 @@ function FrmNuevoVehiculo(){
         url: pagina,
         type:'POST',
         data:{
-            queHago:queHago,
+            queHago:queHago
         }
     })
     .then(
@@ -28,7 +28,36 @@ function FrmNuevoVehiculo(){
     );
 }
 
-function FrmIngreso(){
+function NuevoVehiculo(){
+    var pagina = "nexo.php";
+    var queHago = "NuevoVehiculo";
+
+    var vehiculo = {"patente":$('#txtPatente').val()};
+    console.log (queHago+vehiculo);
+
+     $.ajax({
+        url: pagina,
+        type:'POST',
+        dataType: 'text',
+        data:{
+            queHago:queHago,
+            vehiculo:vehiculo
+        }
+    })
+    .then(
+        function bien(retorno){
+            //$("#ingreso").html(retorno);
+            alert (retorno);
+        }
+        ,function error(jqXHR, textStatus, errorThrown){
+
+            //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        }
+    );
+}
+
+function Ingreso(){
     var pagina = "nexo.php";
     var queHago = "FrmIngreso";
 
@@ -50,9 +79,3 @@ function FrmIngreso(){
         }
     );
 }
-
-function NuevoVehiculo(){
-    var patente = $('#txtPatente').val();
-    alert(patente);
-}
-

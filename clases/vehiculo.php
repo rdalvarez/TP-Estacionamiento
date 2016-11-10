@@ -39,15 +39,14 @@ public function __construct($id=NULL){
 	}
 }
 //--------------------------------------------------------------------------------//
-  	public static function BorrarVehiculoPorId($id)	{
+  	public static function BorrarVehiculoPorId($id){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 		$consulta =$objetoAccesoDato->RetornarConsulta("delete from vehiculos WHERE id=:id");
 		$consulta->bindValue(':id',$idParametro, PDO::PARAM_INT); 
 		return $consulta->execute();
 	}
 
-	public static function BorrarVehiculoPorPatente($patente)	{
-
+	public static function BorrarVehiculoPorPatente($patente){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("delete from vehiculos WHERE patente=:patente");	
 		$consulta->bindValue(':patente',$patente, PDO::PARAM_INT);		
@@ -56,7 +55,7 @@ public function __construct($id=NULL){
 
 	}
 
-	public static function Modificar($vehiculo)	{
+	public static function Modificar($vehiculo){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 		$consulta =$objetoAccesoDato->RetornarConsulta("update vehiculos set 
 			patente='$vehiculo->patente',
@@ -67,7 +66,7 @@ public function __construct($id=NULL){
 		return $consulta->execute();
 	}
 	
-	public static function Insertar($vehiculo)	{
+	public static function Insertar($vehiculo){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 	
 		$consulta = $objetoAccesoDato->RetornarConsulta("INSERT into vehiculos (patente,estacionado,fecha,hora) values (:patente,:estacionado,:fecha,:hora) ");
 		$consulta->bindValue(':patente',$vehiculo->patente, PDO::PARAM_STR);
@@ -78,14 +77,22 @@ public function __construct($id=NULL){
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
 	}
 
-	public static function TraerUnVehiculo ($idParametro)
-	{	
+	public static function TraerUnVehiculo ($idParametro){	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta = $objetoAccesoDato->RetornarConsulta("select * from vehiculos where id =:id");
 		$consulta->bindValue(':id', $idParametro, PDO::PARAM_INT);
 		$consulta->execute();
 		$vehiculoBuscado = $consulta->fetchObject('vehiculo');
 		return $vehiculoBuscado;					
+	}
+
+	public static function TraerUnVehiculoPorPatente($patente){
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+		$consulta = $objetoAccesoDato->RetornarConsulta("select * from vehiculos where patente =:patente");
+		$consulta->bindValue(':patente', $patente, PDO::PARAM_STR);
+		$consulta->execute();
+		$vehiculoBuscado = $consulta->fetchObject('vehiculo');
+		return $vehiculoBuscado;
 	}
 	
 	public static function TraerTodosLosVehiculos()	{

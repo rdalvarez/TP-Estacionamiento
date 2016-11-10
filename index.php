@@ -43,7 +43,7 @@
           </li>
         </ul>
       </li>
-      <li><a onclick= "FrmNuevoVehiculo()">Nuevo Vehiculo</a></li>
+      <li><a onclick="FrmNuevoVehiculo()">Nuevo Vehiculo</a></li>
       <li><a onclick="FrmEstacionamiento()">Grilla de Vehiculos</a></li>
     </ul>
       <ul class="nav navbar-nav navbar-right">

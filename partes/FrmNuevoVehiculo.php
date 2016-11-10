@@ -8,13 +8,13 @@
 				</div>
 
 				<div class="panel-body">
-					<form role="form" onsubmit="NuevoVehiculo(); return false;">
+					<form role="form">
 
 			    		<div class="form-group">
 			    			<input type="text" name="txtPatente" id="txtPatente" class="form-control input-sm" placeholder="Patente">
 			    		</div>
 
-			    		<button type="submit" class="btn btn-info btn-block">Ingresar Vehiculo</button>
+			    		<button type="button" class="btn btn-info btn-block" onclick="NuevoVehiculo()">Ingresar Vehiculo</button>
 					</form>
 		    	</div>
     		</div>
