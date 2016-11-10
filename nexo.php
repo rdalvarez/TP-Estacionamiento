@@ -6,8 +6,8 @@ switch ($_POST['queHago']) {
 
 	case 'NuevoVehiculo':
 		require_once'clases/vehiculo.php';
-		$respuesta['Exito'] = TRUE;
-		$respuesta['Mensaje'] = "Se agrego un nuevo vehiculo correctamente.";
+		$respuesta['Exito'] = FALSE;
+		$respuesta['Mensaje'] = "Hubo un error al Agrear la nueva patente.";
 
 		$vehiculo = $_POST['vehiculo'];	
 
@@ -17,11 +17,22 @@ switch ($_POST['queHago']) {
 		$objVehiculo->fecha = date("Y-m-d");
 		$objVehiculo->hora = date("H:i:s");
 
-		var_dump($objVehiculo);
+		$r = Vehiculo::Insertar($objVehiculo);
+		
+		if ($r>0) {
+			$respuesta['Exito'] = TRUE;
+			$respuesta['Mensaje'] = "Se agrego un nuevo vehiculo correctamente.";
+		}
+
+		$json = json_encode($respuesta);
+
+		echo $json;
 
 		break;
 
-	case '':
+	case 'VerGrillaVehiculos':
+
+
 		break;
 	default:
 		echo ":(";

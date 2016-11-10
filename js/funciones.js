@@ -33,12 +33,14 @@ function NuevoVehiculo(){
     var queHago = "NuevoVehiculo";
 
     var vehiculo = {"patente":$('#txtPatente').val()};
-    console.log (queHago+vehiculo);
+
+    //   console.log (queHago+vehiculo);
+    //FALTA VALIDAR PATENTE
 
      $.ajax({
         url: pagina,
         type:'POST',
-        dataType: 'text',
+        dataType: 'json',
         data:{
             queHago:queHago,
             vehiculo:vehiculo
@@ -47,7 +49,14 @@ function NuevoVehiculo(){
     .then(
         function bien(retorno){
             //$("#ingreso").html(retorno);
-            alert (retorno);
+            if (!retorno.Exito) {
+                alert(retorno.Mensaje);    //            
+            }
+
+            alert(retorno.Mensaje);
+
+             $("#cuerpo").html("");
+
         }
         ,function error(jqXHR, textStatus, errorThrown){
 
@@ -57,9 +66,9 @@ function NuevoVehiculo(){
     );
 }
 
-function Ingreso(){
+function VerGrillaVehiculos(){
     var pagina = "nexo.php";
-    var queHago = "FrmIngreso";
+    var queHago = "VerGrilla";
 
     $.ajax({
         url: pagina,
