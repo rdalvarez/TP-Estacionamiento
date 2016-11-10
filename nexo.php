@@ -1,7 +1,7 @@
 <?php 
 switch ($_POST['queHago']) {
 	case 'FrmNuevoVehiculo':
-		include("partes/FrmNuevoVehiculo.php");
+		include_once("partes/FrmNuevoVehiculo.php");
 		break;
 
 	case 'NuevoVehiculo':
@@ -30,8 +30,8 @@ switch ($_POST['queHago']) {
 
 		break;
 
-	case 'VerGrillaVehiculos':
-
+	case 'VerGrilla':
+		include_once 'partes/FrmEstacionamiento.php';
 
 		break;
 	default:

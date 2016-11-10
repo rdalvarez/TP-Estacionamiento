@@ -79,7 +79,8 @@ function FrmEstacionamiento(){
     })
     .then(
         function bien(retorno){
-            $("#ingreso").html(retorno);
+            console.log(retorno);
+            $("#cuerpo").html(retorno);
         }
         ,function error(jqXHR, textStatus, errorThrown){
 
