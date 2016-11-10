@@ -49,13 +49,13 @@ function NuevoVehiculo(){
     .then(
         function bien(retorno){
             //$("#ingreso").html(retorno);
-            if (!retorno.Exito) {
-                alert(retorno.Mensaje);    //            
-            }
+            // if (!retorno.Exito) {
+            //     alert(retorno.Mensaje);    //            
+            // }
 
-            alert(retorno.Mensaje);
+            alert("Mensaje: \n\t"+ retorno.Mensaje);
 
-             $("#cuerpo").html("");
+             $("#cuerpo").html(" ");
 
         }
         ,function error(jqXHR, textStatus, errorThrown){
@@ -66,7 +66,7 @@ function NuevoVehiculo(){
     );
 }
 
-function VerGrillaVehiculos(){
+function FrmEstacionamiento(){
     var pagina = "nexo.php";
     var queHago = "VerGrilla";
 
