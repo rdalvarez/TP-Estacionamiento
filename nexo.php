@@ -31,7 +31,8 @@ switch ($_POST['queHago']) {
 		break;
 
 	case 'VerGrilla':
-		include_once 'partes/FrmEstacionamiento.php';
+		//include_once 'partes/FrmEstacionamiento.php';
+		include_once 'partes/FrmGrillaDeVehiculos.php';
 
 		break;
 	default:

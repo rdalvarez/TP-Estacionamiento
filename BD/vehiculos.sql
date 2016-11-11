@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2016 a las 17:50:09
+-- Tiempo de generación: 10-11-2016 a las 21:41:12
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -51,7 +51,12 @@ INSERT INTO `vehiculos` (`id`, `patente`, `fecha`, `estacionado`, `hora`) VALUES
 (12, 'RRR-489', '2016-11-10', 1, '15:01:42'),
 (13, 'HHH-154', '2016-11-10', 1, '15:04:19'),
 (14, 'TTT-987', '2016-11-10', 1, '15:07:14'),
-(15, 'PPP-987', '2016-11-10', 1, '15:09:20');
+(15, 'PPP-987', '2016-11-10', 1, '15:09:20'),
+(16, 'EMM-987', '2016-11-10', 1, '16:33:25'),
+(17, 'EFS-147', '2016-11-10', 1, '16:36:38'),
+(18, 'PEM-159', '2016-11-10', 1, '16:37:54'),
+(19, 'ddd-987', '2016-11-10', 1, '16:40:30'),
+(20, 'RTF-987', '2016-11-10', 1, '16:44:05');
 
 --
 -- Índices para tablas volcadas
@@ -71,7 +76,7 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
