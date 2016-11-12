@@ -8,7 +8,6 @@ class Vehiculo
 //--ATRIBUTOS
 	public $id;
 	public $patente;
-	public $estacionado;
 	public $fecha;
 	public $hora;
 //--------------------------------------------------------------------------------//
@@ -16,13 +15,11 @@ class Vehiculo
 //--GETTERS Y SETTERS
   	public function GetId(){return $this->id;}
 	public function GetPatente(){return $this->patente;}
-	public function GetEstacionado(){return $this->estacionado;}
 	public function GetFecha(){return $this->fecha;}
 	public function GetHora(){return $this->hora;}
 
 	public function SetId($valor){$this->id = $valor;}
 	public function SetPatente($valor){$this->patente = $valor;}
-	public function SetEstacionado($valor){$this->estacionado = $valor;}
 	public function SetFecha($valor){$this->fecha = $valor;}
 	public function SetHora($valor){$this->hora = $valor;}
 //--------------------------------------------------------------------------------//
@@ -33,7 +30,6 @@ public function __construct($id=NULL){
 		$obj = Vehiculo::TraerUnVehiculo($id);
 		$this->id = $obj->GetId();
 		$this->patente = $obj->GetPatente();
-		$this->estacionado =  $obj->GetEstacionado();
 		$this->fecha = $obj->GetFecha();
 		$this->hora = $obj->GetHora();
 	}
@@ -58,8 +54,7 @@ public function __construct($id=NULL){
 	public static function Modificar($vehiculo){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 		$consulta =$objetoAccesoDato->RetornarConsulta("update vehiculos set 
-			patente='$vehiculo->patente',
-			estacionado='$vehiculo->estacionado', 
+			patente='$vehiculo->patente', 
 			fecha='$vehiculo->fecha',
 			hora='$vehiculo->hora'
 			WHERE id='$vehiculo->id'");
@@ -68,9 +63,8 @@ public function __construct($id=NULL){
 	
 	public static function Insertar($vehiculo){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 	
-		$consulta = $objetoAccesoDato->RetornarConsulta("INSERT into vehiculos (patente,estacionado,fecha,hora) values (:patente,:estacionado,:fecha,:hora) ");
+		$consulta = $objetoAccesoDato->RetornarConsulta("INSERT into vehiculos (patente,fecha,hora) values (:patente,:fecha,:hora) ");
 		$consulta->bindValue(':patente',$vehiculo->patente, PDO::PARAM_STR);
-		$consulta->bindValue(':estacionado',$vehiculo->estacionado, PDO::PARAM_INT);
 		$consulta->bindValue(':fecha',$vehiculo->fecha, PDO::PARAM_STR);
 		$consulta->bindValue(':hora',$vehiculo->hora, PDO::PARAM_STR);
 		$consulta->execute();
@@ -104,7 +98,19 @@ public function __construct($id=NULL){
 	}
 
 	public function ToString(){
-		return $this->id." - ".$this->patente." - ".$this->estacionado." - ".$this->fecha." - ".$this->hora."\r\n";
+		return $this->id." - ".$this->patente." - ".$this->fecha." - ".$this->hora."\r\n";
+	}
+
+	public function CobrarVehiculo($monto){
+		$resultado = FALSE;
+
+		$hoy = date("Y-m-d H:i:s");
+		$segundos = (strtotime($fecha." ".$hora) - strtotime($hoy));
+
+
+
+
+		return $resultado;
 	}
 }
 

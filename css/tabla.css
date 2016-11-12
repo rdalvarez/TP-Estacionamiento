@@ -1,0 +1,23 @@
+
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
+}
+
+.counter{
+  padding:8px; 
+  color:#ccc;
+}
+
+/* element containing the table */
+.scroll-window{
+    height: 60rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+

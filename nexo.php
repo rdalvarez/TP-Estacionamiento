@@ -1,10 +1,11 @@
 <?php 
 switch ($_POST['queHago']) {
-	case 'FrmNuevoVehiculo':
+
+	case 'FrmNuevoVehiculo': // CARGAR FORMULARIO PARA INGRESAR UN NUEVO VEHICULO
 		include_once("partes/FrmNuevoVehiculo.php");
 		break;
 
-	case 'NuevoVehiculo':
+	case 'NuevoVehiculo': //BOTON DEL FORMULARIO PARA CARGAR LA PATENTE
 		require_once'clases/vehiculo.php';
 		$respuesta['Exito'] = FALSE;
 		$respuesta['Mensaje'] = "Hubo un error al Agrear la nueva patente.";
@@ -30,11 +31,40 @@ switch ($_POST['queHago']) {
 
 		break;
 
-	case 'VerGrilla':
-		//include_once 'partes/FrmEstacionamiento.php';
+	case 'VerGrilla'://MUESTRO TODOS LOS VEHICULOS ESTACIONADOS
 		include_once 'partes/FrmGrillaDeVehiculos.php';
+		break;
+
+	case 'CobrarVehiculo':
+
+			require_once'clases/vehiculo.php';
+
+			$id = $_POST['id'];
+
+			$respuesta['Exito'] = FALSE;
+			$respuesta['Mensaje'] = "No se pudo cobrar.";
+
+			$objVehiculo = new Vehiculo($id);
+
+			if ($objVehiculo !== NULL) {
+				$respuesta['Exito'] = TRUE;
+				$respuesta['Mensaje'] = "Se cobro la siguiguiente patente: \n".$objVehiculo->ToString()." EXITOSAMENTE";
+
+				Vehiculo::CobrarVehiculo(1); //Le paso monto por segundo
+			}
+
+			echo json_encode($respuesta);
 
 		break;
+
+	case 'EditarVehiculo':
+		echo "EDITAR :" . $_POST['id'];
+		break;
+
+	case 'BorrarVehiculo';
+		echo "BORRAR :" . $_POST['id'];
+		break;
+
 	default:
 		echo ":(";
 		break;
