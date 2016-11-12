@@ -2,6 +2,7 @@
  $arrayDeVehiculos = Vehiculo::TraerTodosLosVehiculos();
 ?>
 <script type="text/javascript" src="js/funcionesTabla.js"></script>
+<link rel="stylesheet" type="text/css" href="css/table.css">
 
 <div class="container">
     <div class="row">
@@ -18,6 +19,7 @@
                 <div class="panel-body">
                     <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Ingrese lo que busca." />
                 </div>
+                <div class="table-container">
                 <table class="table table-hover" id="dev-table">
                     <thead>
                         <tr class="filters">
@@ -47,6 +49,7 @@
                     ?>
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     </div>
