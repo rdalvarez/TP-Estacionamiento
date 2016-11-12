@@ -1,7 +1,7 @@
 
 body{
     /*background:url('http://www.radionacional.com.pe/sites/default/files/noticias/000234056W_0.jpg');*/
-    background: #0d1424 url(../imagenes/estacionamiento.jpg) no-repeat center top !important;
+    background: #0d1424 url(../imagenes/estacionamiento.jpg);
     color: #666;
     padding:50px;
     margin-top:30px;

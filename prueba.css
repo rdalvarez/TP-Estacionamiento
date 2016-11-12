@@ -1,18 +1,15 @@
-      .row{
-        margin-top:40px;
-        padding: 0 10px;
-    }
-    .clickable{
-        cursor: pointer;   
-    }
-
-    .panel-heading div {
-      margin-top: -18px;
-      font-size: 15px;
-    }
-    .panel-heading div span{
-      margin-left:5px;
-    }
-    .panel-body{
-      display: none;
-    }
+.table-fixed thead {
+  width: 97%;
+}
+.table-fixed tbody {
+  height: 230px;
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+  border-bottom-width: 0;
+}
