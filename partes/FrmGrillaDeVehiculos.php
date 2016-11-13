@@ -1,9 +1,10 @@
-    <script type="text/javascript" src="js/tabla.js"></script>
-     <link rel="stylesheet" type="text/css" href="css/tabla.css">
+<script type="text/javascript" src="js/tabla.js"></script>
+<link rel="stylesheet" type="text/css" href="css/tabla.css">
 
 <?php require_once 'clases/vehiculo.php'; 
  $arrayDeVehiculos = Vehiculo::TraerTodosLosVehiculos();
 ?>
+
 <div class="container slideUp">
     <div class="row">
         <div class="col-md-12">
@@ -39,9 +40,9 @@
                             $fila.='<td class="text-left">'.$objVehiculo->fecha.'</td>';
                             $fila.='<td class="text-left">'.$objVehiculo->hora.'</td>';
                             $fila.='<td class="text-center">
-                            <a onclick="CobrarVehiculo('.$objVehiculo->id.')" class="btn btn-success btn-xs" title="COBRAR"><span class="glyphicon glyphicon-usd"></span></a>
-                            <a onclick="EditarVehiculo('.$objVehiculo->id.')" class="btn btn-info btn-xs" title="EDITAR"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a onclick="BorrarVehiculo('.$objVehiculo->id.')" class="btn btn-danger btn-xs" title="BORRAR"><span class="glyphicon glyphicon-trash"></span></a></td>';
+                            <a data-toggle="tooltip" onclick="CobrarVehiculo('.$objVehiculo->id.')" class="btn btn-success btn-xs" title="COBRAR"><span class="glyphicon glyphicon-usd"></span></a>
+                            <a data-toggle="tooltip" onclick="EditarVehiculo('.$objVehiculo->id.')" class="btn btn-info btn-xs" title="EDITAR"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a data-toggle="tooltip" onclick="BorrarVehiculo('.$objVehiculo->id.')" class="btn btn-danger btn-xs" title="BORRAR"><span class="glyphicon glyphicon-trash"></span></a></td>';
                             $fila.='</tr>';
 
                             echo $fila;   
@@ -55,4 +56,7 @@
     </div>
 </div>
 
+<script>
+    $('[data-toggle="tooltip"]').tooltip();
+</script>
 

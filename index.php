@@ -1,3 +1,4 @@
+<!-- TRABAJO PRACTICO -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,9 +50,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://www.jquery2dotnet.com">Sign Up</a></li>
         <li class="dropdown">
-          <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Iniciar Session <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown">Iniciar Session <b class="caret"></b></a>
           <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-
               <li>
                 <div class="row">
                   <div class="col-md-12">
@@ -90,8 +90,7 @@
 </nav>
   
 <div id="cuerpo">
-  <!--<h3>Navbar With Dropdown</h3>
-  <p>This example adds a dropdown menu for the "Page 1" button in the navigation bar.</p>-->
+  
 </div>
 
 </body>

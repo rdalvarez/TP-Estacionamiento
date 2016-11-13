@@ -44,11 +44,12 @@ switch ($_POST['queHago']) {
 			$respuesta['Exito'] = FALSE;
 			$respuesta['Mensaje'] = "No se pudo cobrar.";
 
-			$objVehiculo = Vehiculo::TraerUnVehiculo($id);
+			$objImporte = new Importes($id);
+			$objImporte->CalcularImporte(0.1); //Importe por SEGUNDO TRASNCURRIDO
 
 			if ($objVehiculo !== NULL) {
 				$respuesta['Exito'] = TRUE;
-				$respuesta['Mensaje'] = "Se cobro la siguiguiente patente: ".$objVehiculo->patente."\nImporte: ".$objVehiculo->CobrarVehiculo($importe)." mangos";
+				$respuesta['Mensaje'] = "Se cobro la siguiguiente patente: ".$objImporte->patente."\nImporte: ".." mangos";
 			}
 
 			echo json_encode($respuesta);

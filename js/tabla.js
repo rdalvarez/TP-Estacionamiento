@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   $(".search").keyup(function () {
     var searchTerm = $(".search").val();
     var listItem = $('.results tbody').children('tr');
@@ -18,9 +19,15 @@ $(document).ready(function() {
   });
 
   var jobCount = $('.results tbody tr[visible="true"]').length;
-    $('.counter').text(jobCount + ' item');
+  
+  $('.counter').text(jobCount + ' item');
 
-  if(jobCount == '0') {$('.no-result').show();}
-    else {$('.no-result').hide();}
-      });
+  if(jobCount == '0') {
+    $('.no-result').show(); 
+  }
+  else {
+    $('.no-result').hide();
+  }
+
+  });
 });

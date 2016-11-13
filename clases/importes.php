@@ -24,8 +24,8 @@ class Importes extends Vehiculo
 		return (strtotime($this->fechaFinal . " " . $this->horaFinal) - strtotime($this->fecha . " " . $this->hora));
 	}
 
-	public function CalcularImporte(){
-
+	public function CalcularImporte($montoPorSegundo){
+		$this->importe = $this->tiempoTranscurrido * $montoPorSegundo;
 	}
 
 
