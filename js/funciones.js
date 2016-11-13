@@ -111,6 +111,7 @@ function CobrarVehiculo($id)
             //$("#cuerpo").html(retorno);
             
             alert(retorno.Mensaje);
+            console.log(retorno);
         }
         ,function error(jqXHR, textStatus, errorThrown){
             //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);

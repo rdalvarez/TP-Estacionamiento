@@ -101,17 +101,18 @@ public function __construct($id=NULL){
 		return $this->id." - ".$this->patente." - ".$this->fecha." - ".$this->hora."\r\n";
 	}
 
-	public function CobrarVehiculo($monto){
-		$resultado = FALSE;
+/*	public function CobrarVehiculo($monto){
+		$resultado = 0;
 
-		$hoy = date("Y-m-d H:i:s");
-		$segundos = (strtotime($fecha." ".$hora) - strtotime($hoy));
+		$fechaFinal = date("Y-m-d H:i:s");
+		$fechaIninial = $this->fecha . " " . $this->hora;
+		$segundos = (strtotime($fechaFinal) - strtotime($fechaIninial));
 
-
-
+		$resultado = $segundos * $monto; //cobro por segundo
 
 		return $resultado;
-	}
+	}*/
+
 }
 
  ?>

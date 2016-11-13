@@ -36,21 +36,19 @@ switch ($_POST['queHago']) {
 		break;
 
 	case 'CobrarVehiculo':
-
 			require_once'clases/vehiculo.php';
 
+			$importe = 0.2;
 			$id = $_POST['id'];
 
 			$respuesta['Exito'] = FALSE;
 			$respuesta['Mensaje'] = "No se pudo cobrar.";
 
-			$objVehiculo = new Vehiculo($id);
+			$objVehiculo = Vehiculo::TraerUnVehiculo($id);
 
 			if ($objVehiculo !== NULL) {
 				$respuesta['Exito'] = TRUE;
-				$respuesta['Mensaje'] = "Se cobro la siguiguiente patente: \n".$objVehiculo->ToString()." EXITOSAMENTE";
-
-				Vehiculo::CobrarVehiculo(1); //Le paso monto por segundo
+				$respuesta['Mensaje'] = "Se cobro la siguiguiente patente: ".$objVehiculo->patente."\nImporte: ".$objVehiculo->CobrarVehiculo($importe)." mangos";
 			}
 
 			echo json_encode($respuesta);
