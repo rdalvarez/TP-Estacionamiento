@@ -1,8 +1,9 @@
 <script type="text/javascript" src="js/tabla.js"></script>
 <link rel="stylesheet" type="text/css" href="css/tabla.css">
 
-<?php require_once 'clases/vehiculo.php'; 
- $arrayDeVehiculos = Vehiculo::TraerTodosLosVehiculos();
+<?php 
+require_once 'clases/vehiculo.php';
+$arrayDeVehiculos = Vehiculo::TraerTodosLosVehiculos();
 ?>
 
 <div class="container slideUp">
@@ -41,7 +42,7 @@
                             $fila.='<td class="text-left">'.$objVehiculo->hora.'</td>';
                             $fila.='<td class="text-center">
                             <a data-toggle="tooltip" onclick="CobrarVehiculo('.$objVehiculo->id.')" class="btn btn-success btn-xs" title="COBRAR"><span class="glyphicon glyphicon-usd"></span></a>
-                            <a data-toggle="tooltip" onclick="EditarVehiculo('.$objVehiculo->id.')" class="btn btn-info btn-xs" title="EDITAR"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a data-toggle="tooltip" onclick="FrmEditarVehiculo('.$objVehiculo->id.')" class="btn btn-info btn-xs" title="EDITAR"><span class="glyphicon glyphicon-pencil"></span></a>
                             <a data-toggle="tooltip" onclick="BorrarVehiculo('.$objVehiculo->id.')" class="btn btn-danger btn-xs" title="BORRAR"><span class="glyphicon glyphicon-trash"></span></a></td>';
                             $fila.='</tr>';
 

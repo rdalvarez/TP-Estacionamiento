@@ -89,9 +89,9 @@
   </div>   
 </nav>
   
-<div id="cuerpo">
-  
-</div>
+<div id="cuerpo"></div>
+
+<div id="divModal"></div>
 
 </body>
 </html>

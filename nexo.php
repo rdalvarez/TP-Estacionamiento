@@ -1,4 +1,12 @@
-<?php 
+<?php
+if (!isset($_POST['queHago'])) {
+	header('Location: http://localhost/php/');
+	return;
+}else
+{
+	session_start();
+}
+
 switch ($_POST['queHago']) {
 
 	case 'FrmNuevoVehiculo': // CARGAR FORMULARIO PARA INGRESAR UN NUEVO VEHICULO
@@ -36,28 +44,66 @@ switch ($_POST['queHago']) {
 		break;
 
 	case 'CobrarVehiculo':
-			require_once'clases/vehiculo.php';
+			
+			require_once 'clases/importes.php';
+
+			$respuesta['Exito'] = FALSE;
+			$respuesta['Mensaje'] = "ERROR INESPERADO:\nNo se pudo Cobrar.";
 
 			$importe = 0.2;
 			$id = $_POST['id'];
 
-			$respuesta['Exito'] = FALSE;
-			$respuesta['Mensaje'] = "No se pudo cobrar.";
+			$objImporte = new Importes($id); //Usa el contructor de Vehiculo y asi obtengo los datos del auto estacionado
 
-			$objImporte = new Importes($id);
-			$objImporte->CalcularImporte(0.1); //Importe por SEGUNDO TRASNCURRIDO
-
-			if ($objVehiculo !== NULL) {
-				$respuesta['Exito'] = TRUE;
-				$respuesta['Mensaje'] = "Se cobro la siguiguiente patente: ".$objImporte->patente."\nImporte: ".." mangos";
+			if ($objImporte == NULL) {
+				$respuesta['Mensaje'] = "Ocurrio un error inesperado.\n\nNo se pudo crear el importe.";
+				echo json_encode($respuesta);
 			}
+
+			$objImporte->CalcularImporte(0.1); //manualmente ingreso el Importe por SEGUNDO TRASNCURRIDO y setea el atributo (importe) de la clase 
+
+			//GUARDO EL AUTO ESTACIONADO EN MI GRILLA DE IMPORTES
+			$myId = Importes::InsertarImporte($objImporte);
+
+			if ($myId>0) {				
+				$respuesta['Exito'] = TRUE;
+				$respuesta['Mensaje'] = "Se ingreso correctamente el pago. \nPatente: " . $objImporte->patente . ".\nImporte: " . $objImporte->importe . " mangos." . "\nMinutos Transcurridos: ". $objImporte->tiempoTranscurrido/60;
+			}
+			//BORRO EL AUTO ESTACIONADO
+			$r = Vehiculo::BorrarVehiculoPorId($id);
+			if (!$r) {
+				$respuesta['Mensaje'] = "Ocurrio un error inesperado. \nSe ingreso el pago PERO EL AUTO SIGUE ESTACIONADO.";
+			}
+			
 
 			echo json_encode($respuesta);
 
 		break;
 
+	case 'FrmEditarVehiculo':
+
+		$_SESSION["FID"] = $_POST['id'];
+		
+		include_once 'partes/FrmEditarVehiculo.php';
+
+		break;
+
 	case 'EditarVehiculo':
-		echo "EDITAR :" . $_POST['id'];
+
+			require_once 'clases/vehiculo.php';
+			$respuesta['Exito'] = FALSE;
+			$respuesta['Mensaje'] = "ERROR INESPERADO: DESCONOCIDO.";
+
+			$id = $_POST(['id']);
+
+			$objVehiculo = new Vehiculo($id);
+
+			if ($objVehiculo == NULL) {
+				$respuesta['Mensaje'] = "Ocurrio un error inesperado.\n\nNo se pudo Editar el Vehiculo.";
+				echo json_encode($respuesta);
+			}
+
+
 		break;
 
 	case 'BorrarVehiculo';

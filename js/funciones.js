@@ -23,6 +23,7 @@ function FrmNuevoVehiculo(){
         ,function error(jqXHR, textStatus, errorThrown){
             //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
             alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
         }
     );
 }
@@ -57,6 +58,7 @@ function NuevoVehiculo(){
         ,function error(jqXHR, textStatus, errorThrown){
             //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
             alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
         }
     );
 }
@@ -79,6 +81,7 @@ function FrmEstacionamiento(){
         ,function error(jqXHR, textStatus, errorThrown){
             //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
             alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
         }
     );
 }
@@ -105,26 +108,102 @@ function CobrarVehiculo($id)
     .then(
         function bien(retorno){
             if (!retorno.Exito) {
-                alert("OCURRIO UN ERROR PARA COBRAR EL VEHICULO\n"+retorno.Mensaje);
+                alert(retorno.Mensaje);
                 return;
             }
             //$("#cuerpo").html(retorno);
             
             alert(retorno.Mensaje);
             console.log(retorno);
+
+            FrmEstacionamiento();
         }
         ,function error(jqXHR, textStatus, errorThrown){
             //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
             alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
         }
     );
 
 }
 
-function EditarVehiculo($id)
+function FrmEditarVehiculo($id)
 {
-    alert("ID: "+$id);
+    var pagina = "nexo.php";
+    var queHago = "FrmEditarVehiculo";
+    var id = $id;
+
+    $.ajax({
+        url: pagina,
+        type:'POST',
+        data:{
+            queHago:queHago,
+            id:id
+        }
+    })
+    .then(
+        function bien(retorno){
+            $("#divModal").html(retorno);
+            $('#myModal').modal({show:true,keyboard: false,backdrop: "static" });
+        }
+        ,function error(jqXHR, textStatus, errorThrown){
+            //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        }
+    );
+
 }
+
+function EditarVehiculo(){
+
+    if (!confirm("ESTAS A PUNTO DE EDITAR EL VEHICULO ESTACIONADO\n¿Estas seguro?")) {
+        return;
+    } 
+
+    var patente = $('#txtPatente').val();
+    var pagina = "nexo.php";
+    var queHago = "EditarVehiculo";
+
+    $.ajax({
+        url: pagina,
+        type:'POST',
+        dataType: 'json',
+        data:{
+            queHago:queHago,
+            id:id
+        }
+    })
+    .then(
+        function bien(retorno){
+            if (!retorno.Exito) {
+                alert(retorno.Mensaje);
+                return;
+            }
+            //$("#cuerpo").html(retorno);
+            
+            alert(retorno.Mensaje);
+            console.log(retorno);
+
+            FrmEstacionamiento();
+        }
+        ,function error(jqXHR, textStatus, errorThrown){
+            //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        }
+    );
+
+
+}
+
+function CerrarModal(){
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+    $('#myModal').modal('hide');
+    $('#divModal').html(" ");
+}
+
 
 function BorrarVehiculo($id)
 {

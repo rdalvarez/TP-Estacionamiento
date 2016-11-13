@@ -27,18 +27,21 @@ class Vehiculo
 //--CONSTRUCTOR
 public function __construct($id=NULL){
 	if ($id!=NULL) {
-		$obj = Vehiculo::TraerUnVehiculo($id);
-		$this->id = $obj->GetId();
-		$this->patente = $obj->GetPatente();
-		$this->fecha = $obj->GetFecha();
-		$this->hora = $obj->GetHora();
+		$obj = Vehiculo::TraerUnVehiculo($id); //Si no lo encuentra retorna un Bool FALSE
+		if ($obj) {
+			$this->id = $obj->GetId();
+			$this->patente = $obj->GetPatente();
+			$this->fecha = $obj->GetFecha();
+			$this->hora = $obj->GetHora();
+		}
+
 	}
 }
 //--------------------------------------------------------------------------------//
   	public static function BorrarVehiculoPorId($id){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 		$consulta =$objetoAccesoDato->RetornarConsulta("delete from vehiculos WHERE id=:id");
-		$consulta->bindValue(':id',$idParametro, PDO::PARAM_INT); 
+		$consulta->bindValue(':id',$id, PDO::PARAM_INT); 
 		return $consulta->execute();
 	}
 
