@@ -1,13 +1,14 @@
 
 <?php 
-require_once 'clases/vehiculo.php';
+// require_once 'clases/vehiculo.php';
 
-$obj = new Vehiculo(6);
-$obj->patente = "GGG-999";
-$r = Vehiculo::Modificar($obj);
+// $obj = new Vehiculo(6);
+// $obj->patente = "GGG-999";
+// $r = Vehiculo::Modificar($obj);
 
-var_dump($r);
+// var_dump($r);
 
 ?>
 
 <input type="hidden" name=""> hola
+<input type="hidden" name="hiddenId" id="hiddenId" value= "pepe" >

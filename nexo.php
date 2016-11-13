@@ -118,7 +118,28 @@ switch ($_POST['queHago']) {
 		break;
 
 	case 'BorrarVehiculo':
-		echo "BORRAR :" . $_POST['id'];
+		
+		require_once 'clases/vehiculo.php';
+
+		$respuesta['Exito'] = FALSE;
+		$respuesta['Mensaje'] = "ERROR INESPERADO: \n No se pudo borrar.";
+
+		if (!isset($_POST['id'])) {
+			echo json_encode($respuesta);
+		}
+
+		$id = $_POST['id'];
+
+		$objVehiculo = new Vehiculo($id);
+
+		if ($objVehiculo!=NULL) {
+			$respuesta['Exito'] = TRUE;
+			$respuesta['Mensaje'] = "Se pudo borrar el vehiculo.";
+			$r = Vehiculo::BorrarVehiculoPorId($objVehiculo->id);			
+		}
+
+		echo json_encode($respuesta);
+
 		break;
 
 	default:

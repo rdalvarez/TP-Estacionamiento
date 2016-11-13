@@ -4,9 +4,10 @@
 //         e.stopPropagation();
 //     });
 // });
+var pagina = "nexo.php";
+
 
 function FrmNuevoVehiculo(){
-    var pagina = "nexo.php";
     var queHago = "FrmNuevoVehiculo";
 
     $.ajax({
@@ -33,7 +34,6 @@ function NuevoVehiculo(){
         return;
     } 
 
-    var pagina = "nexo.php";
     var queHago = "NuevoVehiculo";
 
     var vehiculo = {"patente":$('#txtPatente').val()};
@@ -64,7 +64,7 @@ function NuevoVehiculo(){
 }
 
 function FrmEstacionamiento(){
-    var pagina = "nexo.php";
+
     var queHago = "VerGrilla";
 
     $.ajax({
@@ -92,7 +92,6 @@ function CobrarVehiculo($id)
         return;
     } 
 
-    var pagina = "nexo.php";
     var queHago = "CobrarVehiculo";
     var id = $id;
 
@@ -129,7 +128,6 @@ function CobrarVehiculo($id)
 
 function FrmEditarVehiculo($id)
 {
-    var pagina = "nexo.php";
     var queHago = "FrmEditarVehiculo";
     var id = $id;
 
@@ -163,7 +161,6 @@ function EditarVehiculo(){
 
     var id = $('#hiddenId').val();
     var patente = $('#txtPatente').val();
-    var pagina = "nexo.php";
     var queHago = "EditarVehiculo";
 
     $.ajax({
@@ -211,5 +208,38 @@ function BorrarVehiculo($id)
 {
     if (!confirm("ESTAS A PUNTO DE BORRAR PERMANENTEMENTE EL VEHICULO\n¿Estas seguro?")) {
         return;
-    } 
+    }
+
+    var queHago = "BorrarVehiculo";
+    var id = $id;
+
+    $.ajax({
+        url: pagina,
+        type:'POST',
+        dataType: 'json',
+        data:{
+            queHago:queHago,
+            id:id
+        }
+    })
+    .then(
+        function bien(retorno){
+            if (!retorno.Exito) {
+                alert(retorno.Mensaje);
+                return;
+            }
+            //$("#cuerpo").html(retorno);
+            
+            alert(retorno.Mensaje);
+            console.log(retorno);
+            CerrarModal();
+            FrmEstacionamiento();
+        }
+        ,function error(jqXHR, textStatus, errorThrown){
+            //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        }
+    );
+
 }
