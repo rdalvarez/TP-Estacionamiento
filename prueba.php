@@ -1,7 +1,13 @@
 
 <?php 
-$var =  include_once 'partes/FrmEditarVehiculo.php';
+require_once 'clases/vehiculo.php';
 
-var_dump($var);
+$obj = new Vehiculo(6);
+$obj->patente = "GGG-999";
+$r = Vehiculo::Modificar($obj);
+
+var_dump($r);
 
 ?>
+
+<input type="hidden" name=""> hola

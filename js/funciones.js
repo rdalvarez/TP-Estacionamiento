@@ -114,7 +114,7 @@ function CobrarVehiculo($id)
             //$("#cuerpo").html(retorno);
             
             alert(retorno.Mensaje);
-            console.log(retorno);
+            //console.log(retorno);
 
             FrmEstacionamiento();
         }
@@ -161,6 +161,7 @@ function EditarVehiculo(){
         return;
     } 
 
+    var id = $('#hiddenId').val();
     var patente = $('#txtPatente').val();
     var pagina = "nexo.php";
     var queHago = "EditarVehiculo";
@@ -171,6 +172,7 @@ function EditarVehiculo(){
         dataType: 'json',
         data:{
             queHago:queHago,
+            patente:patente,
             id:id
         }
     })
@@ -184,7 +186,7 @@ function EditarVehiculo(){
             
             alert(retorno.Mensaje);
             console.log(retorno);
-
+            CerrarModal();
             FrmEstacionamiento();
         }
         ,function error(jqXHR, textStatus, errorThrown){
@@ -198,14 +200,16 @@ function EditarVehiculo(){
 }
 
 function CerrarModal(){
-    $('body').removeClass('modal-open');
-    $('.modal-backdrop').remove();
     $('#myModal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();    
     $('#divModal').html(" ");
 }
 
 
 function BorrarVehiculo($id)
 {
-    alert("ID: "+$id);
+    if (!confirm("ESTAS A PUNTO DE BORRAR PERMANENTEMENTE EL VEHICULO\n¿Estas seguro?")) {
+        return;
+    } 
 }

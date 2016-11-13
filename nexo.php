@@ -83,7 +83,7 @@ switch ($_POST['queHago']) {
 	case 'FrmEditarVehiculo':
 
 		$_SESSION["FID"] = $_POST['id'];
-		
+
 		include_once 'partes/FrmEditarVehiculo.php';
 
 		break;
@@ -91,22 +91,33 @@ switch ($_POST['queHago']) {
 	case 'EditarVehiculo':
 
 			require_once 'clases/vehiculo.php';
+
 			$respuesta['Exito'] = FALSE;
-			$respuesta['Mensaje'] = "ERROR INESPERADO: DESCONOCIDO.";
+			$respuesta['Mensaje'] = "ERROR INESPERADO: \n No se pudo modificar la Patente.";
 
-			$id = $_POST(['id']);
-
-			$objVehiculo = new Vehiculo($id);
-
-			if ($objVehiculo == NULL) {
-				$respuesta['Mensaje'] = "Ocurrio un error inesperado.\n\nNo se pudo Editar el Vehiculo.";
+			if (!isset($_POST['id']) && !isset($_POST['patente'])) {
 				echo json_encode($respuesta);
 			}
 
+			$id = $_POST['id'];//Donde esta 
+			$patente = $_POST['patente']; //Nueva patente
+
+			$objVehiculo = new Vehiculo($id); // Obtengo patente a modificar
+
+			if ($objVehiculo != NULL) {
+
+				$respuesta['Exito'] = TRUE;
+				$respuesta['Mensaje'] = "Se pudo editar correctamente el Vehiculo.\n" . $objVehiculo->patente . " => " . $patente;
+				$objVehiculo->patente = $patente;
+
+				$r = Vehiculo::Modificar($objVehiculo);
+			}			
+
+			echo json_encode($respuesta);
 
 		break;
 
-	case 'BorrarVehiculo';
+	case 'BorrarVehiculo':
 		echo "BORRAR :" . $_POST['id'];
 		break;
 

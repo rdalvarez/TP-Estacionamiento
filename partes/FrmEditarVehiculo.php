@@ -23,6 +23,7 @@ $objVehiculo = Vehiculo::TraerUnVehiculo($id);
                 <div class="form-group">
                   <label for="patente">Cambiar Patente</label>
                   <input type="text" class="form-control" id="txtPatente" placeholder="Patente"/>
+                  <input type="hidden" name="hiddenId" id="hiddenId" value= "<?php echo ($objVehiculo->id ); ?>" >
                 </div>
               </form>
             </div>
