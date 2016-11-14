@@ -38,6 +38,7 @@ public function __construct($id=NULL){
 	}
 }
 //--------------------------------------------------------------------------------//
+//--METODOS
   	public static function BorrarVehiculoPorId($id){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 		$consulta =$objetoAccesoDato->RetornarConsulta("delete from vehiculos WHERE id=:id");
