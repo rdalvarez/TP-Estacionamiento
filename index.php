@@ -1,18 +1,26 @@
+<?php 
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+  header('Location: http://localhost/php/login');
+  return;
+}
+
+ ?>
+
 <!-- TRABAJO PRACTICO -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Case</title>
+  <title>my Estacionamiento</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/myStyle.css">
   <link rel="stylesheet" type="text/css" href="css/animations.css">
-  <script type="text/javascript" src="js/funciones.js"></script>
+
 </head>
 <body>
 
@@ -94,4 +102,11 @@
 <div id="divModal"></div>
 
 </body>
+
+  <!-- Script -->
+
+  <script type="text/javascript" src="js/funciones.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 </html>
