@@ -1,5 +1,9 @@
 
 body {
+	background:url(../imagenes/body-bg.jpg);
+	background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 300;
@@ -85,11 +89,11 @@ img { max-width: 100%; }
     padding: 100px 0 170px 0;
 }
 
-.top-content .text {
+.top-content .email {
 	color: #fff;
 }
 
-.top-content .text h1 { color: #fff; }
+.top-content .email h1 { color: #fff; }
 
 .top-content .description {
 	margin: 20px 0 10px 0;

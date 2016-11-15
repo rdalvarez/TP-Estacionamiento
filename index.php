@@ -2,8 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['usuario'])) {
-  header('Location: http://localhost/php/login');
-  return;
+  header('Location: ../php/login');
 }
 
  ?>
@@ -30,66 +29,50 @@ if (!isset($_SESSION['usuario'])) {
       <a class="navbar-brand" href="#">Estacionamiento App</a>
     </div>
     <ul class="nav navbar-nav">
+
+     <?php if ($_SESSION['permiso'] == "admin") {?>
+      
       <li class="dropdown active"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Balances</a></li>
-          <li><a href="#">Adm. de Usuarios</a></li>
+          <li><a href="#">Administracion de Usuarios</a></li>
+          <li><a onclick="FrmEstacionamiento()">Borrar Vehiculo Estacionado</a></li>
           <li class="divider"></li>
           <li class="dropdown-submenu">
-            <a tabindex="-1" href="#">Hover me for more options</a>
+            <a tabindex="-1">Grillas</a>
             <ul class="dropdown-menu">
-              <li><a tabindex="-1" href="#">Second level</a></li>
+              <li><a tabindex="-1">Historial de Cobro</a></li>
               <li class="dropdown-submenu">
-                <a href="#">Even More..</a>
+                <a href="#">Balances</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">3rd level</a></li>
-                  <li><a href="#">3rd level</a></li>
+                  <li><a href="#">Anual</a></li>
+                  <li><a href="#">Mensual</a></li>
+                  <li><a href="#">Semanal</a></li>
                 </ul>
               </li>
-              <li><a href="#">Second level</a></li>
-              <li><a href="#">Second level</a></li>
             </ul>
           </li>
         </ul>
       </li>
+      <?php } ?>
+
       <li><a onclick="FrmNuevoVehiculo()">Nuevo Vehiculo</a></li>
       <li><a onclick="FrmEstacionamiento()">Grilla de Vehiculos</a></li>
     </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://www.jquery2dotnet.com">Sign Up</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Iniciar Session <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown">Bienvenido <?php echo $_SESSION['usuario']; ?> <b class="caret"></b></a>
           <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
               <li>
                 <div class="row">
                   <div class="col-md-12">
                     <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
                       <div class="form-group">
-                        <label class="sr-only" for="exampleInputEmail2">Correo electrónico</label>
-                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Correo electrónico" required>
-                      </div>
-                      <div class="form-group">
-                        <label class="sr-only" for="exampleInputPassword2">Contraseña</label>
-                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Contraseña" required>
-                      </div>
-                      <div class="checkbox">
-                         <label>
-                         <input type="checkbox"> Recordarme
-                         </label>
-                      </div>
-                      <div class="form-group">
-                         <button type="submit" class="btn btn-success btn-block">Entrar</button>
+                         <button onclick="Desloguear()" class="btn btn-danger btn-block">Desloguear</button>
                       </div>
                     </form>
                   </div>
                 </div>
               </li>
-              <li class="divider"></li>
-              <li>
-                 <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Ingresar como Usuario">
-                 <input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Ingresar como Administrador">
-              </li>
-
           </ul>
         </li>
 

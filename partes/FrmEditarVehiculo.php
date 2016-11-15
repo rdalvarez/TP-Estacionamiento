@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once 'clases/vehiculo.php';
 
 $id = $_SESSION['FID'];

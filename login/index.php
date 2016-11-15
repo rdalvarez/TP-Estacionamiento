@@ -1,3 +1,14 @@
+<?php 
+
+session_start();
+
+if (isset($_SESSION['usuario'])) {
+     header('Location: ../../php');
+}
+
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +23,6 @@
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
         <link rel="stylesheet" href="../css/bootstrap.min.css">                
         <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="../css/form-elements.css">
         <link rel="stylesheet" href="../css/animations.css">
         <link rel="stylesheet" href="../css/style.css">
 
@@ -25,12 +35,12 @@
         <div class="top-content">
         	
             <div class="inner-bg">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>My Estacionamiento </strong> Login</h1>
+                            <h1 style="color: #FFFFFF"><strong >My Estacionamiento </strong> Login</h1>
                             <div class="description">
-                            	<p>
+                            	<p style="color: #FFFFFF">
 	                            	Esta pagina fue hecha para un TP de la universidad <strong>(UTN)</strong>, espero que les guste.
                             	</p>
                             </div>
@@ -48,16 +58,16 @@
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form" action="" method="post" class="login-form">
+			                    <form role="form" onsubmit="ValidarLogin(); return false" method="post" class="login-form">
 			                    	<div class="form-group">
-			                    		<label class="sr-only" for="form-username">Usuario</label>
-			                        	<input type="text" name="form-username" placeholder="Usuario..." class="form-username form-control" id="form-username">
+			                    		<label class="sr-only" for="form-email">Usuario</label>
+			                        	<input type="email" name="email" placeholder="Usuario..." class="form-control" id="email" required>
 			                        </div>
 			                        <div class="form-group">
-			                        	<label class="sr-only" for="form-password">Contraseña</label>
-			                        	<input type="password" name="form-password" placeholder="Contraseña..." class="form-password form-control" id="form-password">
+			                        	<label class="sr-only" for="form-clave">Contraseña</label>
+			                        	<input type="password" name="flave" placeholder="Contraseña..." class="form-control" id="clave" required>
 			                        </div>
-			                        <button type="submit" class="btn">Ingresar</button>
+			                        <button type="submit" class="btn btn-danger">Ingresar</button>
 			                    </form>
 		                    </div>
                         </div>
@@ -66,10 +76,10 @@
                         <div class="col-sm-6 col-sm-offset-3 social-login">
                         	<h3><strong>(Test)</strong>  Ingresar como:</h3>
                         	<div>
-	                        	<a class="btn btn-link-2 animated tossing" href="#">
+	                        	<a class="btn btn-link-2" onclick="testA()">
 	                        		<i class="fa"></i> Administrador
 	                        	</a>
-	                        	<a class="btn btn-link-2 animated tossing" href="#">
+	                        	<a class="btn btn-link-2" onclick="testU()">
 	                        		<i class="fa"></i> Usuario
 	                        	</a>
                         	</div>
@@ -84,8 +94,7 @@
         <!-- Javascript -->
         <script src="../js/jquery-1.12.4.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/jquery.backstretch.js"></script>
-        <script src="../js/scripts.js"></script>
+        <script type="text/javascript" src="../js/login.js"></script>
 
     </body>
 

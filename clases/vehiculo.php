@@ -89,8 +89,8 @@ public function __construct($id=NULL){
 		$consulta = $objetoAccesoDato->RetornarConsulta("select * from vehiculos where patente =:patente");
 		$consulta->bindValue(':patente', $patente, PDO::PARAM_STR);
 		$consulta->execute();
-		$vehiculoBuscado = $consulta->fetchObject('vehiculo');
-		return $vehiculoBuscado;
+		$arrVehiculos= $consulta->fetchAll(PDO::FETCH_CLASS, "vehiculo");	
+		return $arrVehiculos;
 	}
 	
 	public static function TraerTodosLosVehiculos()	{
@@ -103,6 +103,17 @@ public function __construct($id=NULL){
 
 	public function ToString(){
 		return $this->id." - ".$this->patente." - ".$this->fecha." - ".$this->hora."\r\n";
+	}
+
+	public static function ValidarPatente($stringPatente){
+		$respuesta = TRUE;
+
+		$obj = Vehiculo::TraerUnVehiculoPorPatente($stringPatente);//Retorna false si no lo encontro
+
+		if ($obj==FALSE) {
+			$respuesta = FALSE;
+		}
+		return $respuesta;
 	}
 
 /*	public function CobrarVehiculo($monto){

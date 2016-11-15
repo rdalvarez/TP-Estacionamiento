@@ -12,10 +12,7 @@ class Usuario
 	public $permiso;
 //--------------------------------------------------------------------------------//
 //--CONSTRUCTOR	
-	public function __construct()
-	{
-
-	}
+	public function __construct(){}
 //--------------------------------------------------------------------------------//
 //--METODOS STATICOS
 	public static function InsertarUsuario($objUsuario){

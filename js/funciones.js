@@ -38,8 +38,7 @@ function NuevoVehiculo(){
 
     var vehiculo = {"patente":$('#txtPatente').val()};
 
-    //   console.log (queHago+vehiculo);
-    //FALTA VALIDAR PATENTE
+    //VALIDAR STRING DE PATENTE
 
      $.ajax({
         url: pagina,
@@ -52,6 +51,13 @@ function NuevoVehiculo(){
     })
     .then(
         function bien(retorno){
+
+            if (!retorno.Exito) {
+                alert(retorno);
+                $("#cuerpo").html(" ");
+                return;
+            }
+
             alert("Mensaje: \n\t"+ retorno.Mensaje);
              $("#cuerpo").html(" ");
         }
@@ -242,4 +248,14 @@ function BorrarVehiculo($id)
         }
     );
 
+}
+
+function Desloguear(){
+    var funcionAjax=$.ajax({
+        url:"partes/Desloguear.php",
+        type:"post"     
+    });
+    funcionAjax.done(function(retorno){
+           alert("Esperamos volver a verlo. ");            
+    }); 
 }

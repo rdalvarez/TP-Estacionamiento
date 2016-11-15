@@ -1,10 +1,8 @@
 <?php
+session_start();
 if (!isset($_POST['queHago'])) {
-	header('Location: http://localhost/php/');
+	header('Location: http://localhost:8080/php/');
 	return;
-}else
-{
-	session_start();
 }
 
 switch ($_POST['queHago']) {
@@ -19,6 +17,15 @@ switch ($_POST['queHago']) {
 		$respuesta['Mensaje'] = "Hubo un error al Agrear la nueva patente.";
 
 		$vehiculo = $_POST['vehiculo'];	
+
+		// $validacion = Vehiculo::ValidarPatente($vehiculo); //retorna TRUE si esta bien la validacion
+
+		// if (!$validacion) {
+		// 	$respuesta['Exito'] = FALSE;
+		// 	$respuesta['Mensaje'] = "ERROR: la patente ya se encuentra o no se reconoce como patente. \nPor favor vuelve a intentar.";
+		// 	echo json_encode($respuesta);
+		// 	return;
+		// }				
 
 		$objVehiculo = new Vehiculo();//OBJETO VEHICULO
 		$objVehiculo->patente = $vehiculo['patente']; //PATENTE
@@ -137,6 +144,36 @@ switch ($_POST['queHago']) {
 			$respuesta['Mensaje'] = "Se pudo borrar el vehiculo.";
 			$r = Vehiculo::BorrarVehiculoPorId($objVehiculo->id);			
 		}
+
+		echo json_encode($respuesta);
+
+		break;
+
+	case 'ValidarLogin':
+		require_once'clases/usuario.php';
+
+		$respuesta['Exito'] = FALSE;
+		$respuesta['Mensaje'] = "ERROR VALIDAR USUARIO.";
+
+		if (!isset($_POST['usuario']) && !isset($_POST['clave'])) {
+			$respuesta['Mensaje'] = "NO SE ACEPTAN CAMPOS VACIOS";
+			echo json_encode($respuesta);
+		}
+
+		$usuario = $_POST['usuario'];
+		$clave = $_POST['clave'];
+
+		$objUsuario = Usuario::TraerUnUsuarioPorParametro($usuario);
+
+		if ($objUsuario != NULL) {
+			if ($objUsuario->usuario == $usuario) {
+				$respuesta['Exito'] = TRUE;
+				$respuesta['Mensaje'] = "CORRECTO! \nSERAS RE-DIRECCIONADO A LA PAGINA.";
+				$_SESSION['usuario'] = $objUsuario->usuario;
+				$_SESSION['permiso'] = $objUsuario->permiso;
+			}
+		}
+
 
 		echo json_encode($respuesta);
 
