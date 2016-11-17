@@ -2,7 +2,10 @@
 session_start();
 
 if (!isset($_SESSION['usuario'])) {
-  header('Location: ../php/login');
+  //LOCAL HOST
+  header('Location: http://localhost/php/login');
+  // MY ESTACIONAMIENTO
+  //header('Location: http://myestacionamiento.esy.es/login');
 }
 
  ?>
@@ -47,6 +50,7 @@ if (!isset($_SESSION['usuario'])) {
                   <li><a href="#">Anual</a></li>
                   <li><a href="#">Mensual</a></li>
                   <li><a href="#">Semanal</a></li>
+                  <li><a href="#">Día</a></li>
                 </ul>
               </li>
             </ul>

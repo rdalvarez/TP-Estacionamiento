@@ -51,7 +51,7 @@ $arrayDeVehiculos = Vehiculo::TraerTodosLosVehiculos();
                             $fila.='<td class="text-left">'.$objVehiculo->hora.'</td>';
                             $fila.='<td class="text-center">
                             <a data-toggle="tooltip" onclick="CobrarVehiculo('.$objVehiculo->id.')" class="btn btn-success btn-xs" title="COBRAR"><span class="glyphicon glyphicon-usd"></span></a>
-                            <a data-toggle="tooltip" onclick="FrmEditarVehiculo('.$objVehiculo->id.')" class="btn btn-info btn-xs" title="EDITAR"><span class="glyphicon glyphicon-pencil"></span></a>';
+                            <a data-toggle="tooltip" onclick="FrmEditarVehiculo('.$objVehiculo->id.')" class="btn btn-info btn-xs" title="EDITAR"><span class="glyphicon glyphicon-pencil"></span></a> ';
                             if ($val) { $fila.= '<a data-toggle="tooltip" onclick="BorrarVehiculo('.$objVehiculo->id.')" class="btn btn-danger btn-xs" title="BORRAR"><span class="glyphicon glyphicon-trash"></span></a>';}
                             $fila.='</td></tr>';
 

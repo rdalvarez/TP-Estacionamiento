@@ -3,7 +3,10 @@
 session_start();
 
 if (isset($_SESSION['usuario'])) {
-     header('Location: ../../php');
+    //LOCAL HOST
+    header('Location: http://localhost/php');
+    //MY ESTACINAMIENTO
+    //header('Location: http://myestacionamiento.esy.es');
 }
 
  ?>
