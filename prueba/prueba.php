@@ -16,6 +16,14 @@
 
 <?php 
 
-var_dump($_GET);
+$string = $_GET['text'];
+
+$r = ereg("-", $string);
+
+if ($r != FALSE) {
+	echo "tiene - ";
+}
+
+var_dump($r);
 
  ?>
