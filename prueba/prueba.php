@@ -16,14 +16,20 @@
 
 <?php 
 
-$string = $_GET['text'];
+$string = strtoupper($_GET['text']);
+echo $string."\n";
 
-$r = ereg("-", $string);
 
-if ($r != FALSE) {
-	echo "tiene - ";
+$regExpre = "/^[A-Z]{3,3}\-[0-9]{3,3}$/" ;
+$regExpre2 = "/^[A-Z]{2,2}\-?[0-9]{3,3}\-[A-Z]{2,2}$/";
+
+$patente1 = preg_match($regExpre, $string);
+$patente2 = preg_match($regExpre2, $string);
+
+if ($patente1==1 || $patente2==1) {
+	echo "\n VALIDADO \n";
 }
 
-var_dump($r);
+var_dump($patente1);var_dump($patente2);
 
  ?>
