@@ -105,29 +105,33 @@ public function __construct($id=NULL){
 		return $this->id." - ".$this->patente." - ".$this->fecha." - ".$this->hora."\r\n";
 	}
 
+
+	//DEVUELVO FALSE SI TODO ESTA OK------------------------//
 	public static function ValidarPatente($stringPatente){
-		$respuesta = TRUE;
 
-		$obj = Vehiculo::TraerUnVehiculoPorPatente($stringPatente);//Retorna false si no lo encontro
+	$res = TRUE;
 
-		if ($obj==FALSE) {
-			$respuesta = FALSE;
-		}
-		return $respuesta;
+	//VALIDO FORMATO
+	$regExpre = "/^[A-Z]{3,3}\-[0-9]{3,3}$/" ; // AAA-000
+	$regExpre2 = "/^[A-Z]{2,2}\-?[0-9]{3,3}\-[A-Z]{2,2}$/"; // AA-000-AA
+
+	$patente1 = preg_match($regExpre, $stringPatente); //Si es valido devuelve 1
+	$patente2 = preg_match($regExpre2, $stringPatente);
+
+	if ($patente1==1 || $patente2==1) { //SI ALGUNO DE LOS 2 ES IGUAL a 1 ENTRO
+		$res = FALSE;
 	}
 
-/*	public function CobrarVehiculo($monto){
-		$resultado = 0;
+	//VALIDO SI ESTA EN LA DB
+	$val = empty(Vehiculo::TraerUnVehiculoPorPatente($stringPatente)); //FALSE si tiene datos - TRUE si esta vacio
 
-		$fechaFinal = date("Y-m-d H:i:s");
-		$fechaIninial = $this->fecha . " " . $this->hora;
-		$segundos = (strtotime($fechaFinal) - strtotime($fechaIninial));
+	if (!$val)
+		$res = TRUE;
+	
 
-		$resultado = $segundos * $monto; //cobro por segundo
+	return $res;
 
-		return $resultado;
-	}*/
-
+	}
 }
 
  ?>

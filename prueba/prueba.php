@@ -15,21 +15,12 @@
 
 
 <?php 
-
-$string = strtoupper($_GET['text']);
-echo $string."\n";
+require_once '../clases/vehiculo.php';
 
 
-$regExpre = "/^[A-Z]{3,3}\-[0-9]{3,3}$/" ;
-$regExpre2 = "/^[A-Z]{2,2}\-?[0-9]{3,3}\-[A-Z]{2,2}$/";
+$pat = $_GET['text'];
 
-$patente1 = preg_match($regExpre, $string);
-$patente2 = preg_match($regExpre2, $string);
+$res = Vehiculo::ValidarPatente($pat);
 
-if ($patente1==1 || $patente2==1) {
-	echo "\n VALIDADO \n";
-}
-
-var_dump($patente1);var_dump($patente2);
-
+var_dump($res);
  ?>

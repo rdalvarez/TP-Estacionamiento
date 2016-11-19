@@ -53,12 +53,11 @@ function NuevoVehiculo(){
         function bien(retorno){
 
             if (!retorno.Exito) {
-                alert(retorno);
+                alert(retorno.Mensaje);
                 $("#cuerpo").html(" ");
                 return;
             }
-
-            alert("Mensaje: \n\t"+ retorno.Mensaje);
+            alert(retorno.Mensaje);
              $("#cuerpo").html(" ");
         }
         ,function error(jqXHR, textStatus, errorThrown){

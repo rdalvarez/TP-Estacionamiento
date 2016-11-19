@@ -1,7 +1,8 @@
 <?php
 session_start();
-if (!isset($_POST['queHago'])) {
+if (!isset($_POST['queHago']) && !isset($_SESSION['usuario'])) {
 	header('Location: http://localhost:8080/php/');
+	//header('Location: http://myestacionamiento.esy.es');
 	return;
 }
 
@@ -13,22 +14,24 @@ switch ($_POST['queHago']) {
 
 	case 'NuevoVehiculo': //BOTON DEL FORMULARIO PARA CARGAR LA PATENTE
 		require_once'clases/vehiculo.php';
+
 		$respuesta['Exito'] = FALSE;
 		$respuesta['Mensaje'] = "Hubo un error al Agrear la nueva patente.";
 
-		$vehiculo = $_POST['vehiculo'];	
+		$vehiculo = $_POST['vehiculo']; //Recivo un array (1){["patente"] => string}
+		$patente = strtoupper($vehiculo['patente']); // Paso todo a mayusculas
 
-		// $validacion = Vehiculo::ValidarPatente($vehiculo); //retorna TRUE si esta bien la validacion
+		$validacion = Vehiculo::ValidarPatente($patente); //retorna FALSE si esta bien la validacion
 
-		// if (!$validacion) {
-		// 	$respuesta['Exito'] = FALSE;
-		// 	$respuesta['Mensaje'] = "ERROR: la patente ya se encuentra o no se reconoce como patente. \nPor favor vuelve a intentar.";
-		// 	echo json_encode($respuesta);
-		// 	return;
-		// }				
+		if ($validacion) {
+			$respuesta['Exito'] = FALSE;
+			$respuesta['Mensaje'] = "ERROR: la patente ya se encuentra o no se reconoce como patente.\nSOLO SE ADMITE EL SIGUIENTE FORMATO: AAA-000 Y AA-000-AA.\nPor favor vuelva a intentar.";
+			echo json_encode($respuesta);
+			return;
+		}				
 
 		$objVehiculo = new Vehiculo();//OBJETO VEHICULO
-		$objVehiculo->patente = $vehiculo['patente']; //PATENTE
+		$objVehiculo->patente = $patente; //PATENTE
 		$objVehiculo->estacionado = 1;
 		$objVehiculo->fecha = date("Y-m-d");
 		$objVehiculo->hora = date("H:i:s");
@@ -57,7 +60,7 @@ switch ($_POST['queHago']) {
 			$respuesta['Exito'] = FALSE;
 			$respuesta['Mensaje'] = "ERROR INESPERADO:\nNo se pudo Cobrar.";
 
-			$importe = 0.2;
+			$importe = 0.01;
 			$id = $_POST['id'];
 
 			$objImporte = new Importes($id); //Usa el contructor de Vehiculo y asi obtengo los datos del auto estacionado
@@ -67,14 +70,15 @@ switch ($_POST['queHago']) {
 				echo json_encode($respuesta);
 			}
 
-			$objImporte->CalcularImporte(0.1); //manualmente ingreso el Importe por SEGUNDO TRASNCURRIDO y setea el atributo (importe) de la clase 
+			$objImporte->CalcularImporte($importe); //manualmente ingreso el Importe por SEGUNDO TRASNCURRIDO y setea el atributo (importe) de la clase 
 
 			//GUARDO EL AUTO ESTACIONADO EN MI GRILLA DE IMPORTES
 			$myId = Importes::InsertarImporte($objImporte);
+			$horas = number_format($objImporte->tiempoTranscurrido/3600, 2, '.', '');//Convercion para que aparezca solo con 2 dijitos
 
 			if ($myId>0) {				
 				$respuesta['Exito'] = TRUE;
-				$respuesta['Mensaje'] = "Se ingreso correctamente el pago. \nPatente: " . $objImporte->patente . ".\nImporte: " . $objImporte->importe . " mangos." . "\nMinutos Transcurridos: ". $objImporte->tiempoTranscurrido/60;
+				$respuesta['Mensaje'] = "Se ingreso correctamente el pago.\nFecha y Hora de Salida:". $objImporte->fechaFinal . " - " . $objImporte->horaFinal ." \nPatente: " . $objImporte->patente . ".\nImporte x seg (1 centavo): " . $objImporte->importe . " mangos." . "\nTiempo: " . $horas . "horas.";
 			}
 			//BORRO EL AUTO ESTACIONADO
 			$r = Vehiculo::BorrarVehiculoPorId($id);

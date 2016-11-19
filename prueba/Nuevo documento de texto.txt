@@ -1,7 +1,0 @@
-http://www.cristalab.com/tutoriales/expresiones-regulares-en-php-c101020l/
-
-http://meudiseny.com/miphp/ejmExpreRegul.php
-
-http://www.manualdephp.com/manualdephp/expresiones-regulares-en-php/
-
-http://php.net/manual/es/regex.examples.php
