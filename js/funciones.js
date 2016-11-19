@@ -258,3 +258,26 @@ function Desloguear(){
            alert("Esperamos volver a verlo. ");            
     }); 
 }
+
+
+function FrmGrillaDeCobro(){
+    var queHago = "FrmGrillaDeCobro";
+
+    $.ajax({
+        url: pagina,
+        type:'POST',
+        data:{
+            queHago:queHago,
+        }
+    })
+    .then(
+        function bien(retorno){
+            $("#cuerpo").html(retorno);
+        }
+        ,function error(jqXHR, textStatus, errorThrown){
+            //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        }
+    );
+}

@@ -43,7 +43,7 @@ if (!isset($_SESSION['usuario'])) {
           <li class="dropdown-submenu">
             <a tabindex="-1">Grillas</a>
             <ul class="dropdown-menu">
-              <li><a tabindex="-1">Historial de Cobro</a></li>
+              <li><a tabindex="-1" onclick = "FrmGrillaDeCobro()">Historial de Cobro</a></li>
               <li class="dropdown-submenu">
                 <a href="#">Balances</a>
                 <ul class="dropdown-menu">
@@ -60,7 +60,7 @@ if (!isset($_SESSION['usuario'])) {
       <?php } ?>
 
       <li><a onclick="FrmNuevoVehiculo()">Nuevo Vehiculo</a></li>
-      <li><a onclick="FrmEstacionamiento()">Grilla de Vehiculos</a></li>
+      <li><a onclick="FrmEstacionamiento()">Grilla de Vehiculos Estacionados</a></li>
     </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

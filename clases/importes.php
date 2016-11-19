@@ -50,6 +50,14 @@ class Importes extends Vehiculo
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
 	}
 
+	public static function TraerTodosLosImportes(){
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		$consulta = $objetoAccesoDato->RetornarConsulta("select * from importes");
+		$consulta->execute();			
+		$arrImportes = $consulta->fetchAll(PDO::FETCH_CLASS, "Importes");	
+		return $arrImportes;	
+	}
+
 }
 
 

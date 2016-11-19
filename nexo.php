@@ -60,7 +60,7 @@ switch ($_POST['queHago']) {
 			$respuesta['Exito'] = FALSE;
 			$respuesta['Mensaje'] = "ERROR INESPERADO:\nNo se pudo Cobrar.";
 
-			$importe = 0.01;
+			$importe = 0.01;//seria 1 centavo por segundo
 			$id = $_POST['id'];
 
 			$objImporte = new Importes($id); //Usa el contructor de Vehiculo y asi obtengo los datos del auto estacionado
@@ -78,7 +78,7 @@ switch ($_POST['queHago']) {
 
 			if ($myId>0) {				
 				$respuesta['Exito'] = TRUE;
-				$respuesta['Mensaje'] = "Se ingreso correctamente el pago.\nFecha y Hora de Salida:". $objImporte->fechaFinal . " - " . $objImporte->horaFinal ." \nPatente: " . $objImporte->patente . ".\nImporte x seg (1 centavo): " . $objImporte->importe . " mangos." . "\nTiempo: " . $horas . "horas.";
+				$respuesta['Mensaje'] = "Se ingreso correctamente el pago.\nFecha y Hora de Salida:". $objImporte->fechaFinal . " - " . $objImporte->horaFinal ." \nPatente: " . $objImporte->patente . ".\nImporte: " . $objImporte->importe . " mangos." . "\nTiempo: " . $horas . "horas.";
 			}
 			//BORRO EL AUTO ESTACIONADO
 			$r = Vehiculo::BorrarVehiculoPorId($id);
@@ -112,6 +112,15 @@ switch ($_POST['queHago']) {
 
 			$id = $_POST['id'];//Donde esta 
 			$patente = $_POST['patente']; //Nueva patente
+
+			$validacion = Vehiculo::ValidarPatente($patente); //retorna FALSE si esta bien la validacion
+
+			if ($validacion) {
+				$respuesta['Exito'] = FALSE;
+				$respuesta['Mensaje'] = "ERROR: la patente ya se encuentra o no se reconoce como patente.\nSOLO SE ADMITE EL SIGUIENTE FORMATO: AAA-000 Y AA-000-AA.\nPor favor vuelva a intentar.";
+				echo json_encode($respuesta);
+				return;
+			}	
 
 			$objVehiculo = new Vehiculo($id); // Obtengo patente a modificar
 
@@ -181,6 +190,11 @@ switch ($_POST['queHago']) {
 
 		echo json_encode($respuesta);
 
+		break;
+
+	case "FrmGrillaDeCobro":
+
+		include_once 'partes/FrmGrillaDeCobro.php';
 		break;
 
 	default:
