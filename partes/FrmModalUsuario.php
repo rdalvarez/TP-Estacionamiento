@@ -29,7 +29,7 @@
             <!-- Modal Pie -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" onclick="CerrarModal()"> Cerrar </button>
-                <button type="button" class="btn btn-primary" onclick="AltaUsuario()"> Guardar Cambios </button>
+                <button type="button" class="btn btn-primary" onclick="AltaUsuario()"> Crear </button>
             </div>
         </div>
     </div>
