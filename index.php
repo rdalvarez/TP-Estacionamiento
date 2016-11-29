@@ -3,9 +3,9 @@ session_start();
 
 if (!isset($_SESSION['usuario'])) {
   //LOCAL HOST
-  header('Location: http://localhost/php/login');
+  //header('Location: http://localhost/php/login');
   // MY ESTACIONAMIENTO
-  //header('Location: http://myestacionamiento.esy.es/login');
+  header('Location: http://myestacionamiento.esy.es/login');
 }
 
  ?>
