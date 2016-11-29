@@ -4,9 +4,9 @@ session_start();
 
 if (isset($_SESSION['usuario'])) {
     //LOCAL HOST
-    //header('Location: http://localhost/php');
+    header('Location: http://localhost/php');
     //MY ESTACINAMIENTO
-    header('Location: http://myestacionamiento.esy.es');
+    //header('Location: http://myestacionamiento.esy.es');
 }
 
  ?>

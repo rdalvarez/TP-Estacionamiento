@@ -52,7 +52,7 @@ class Importes extends Vehiculo
 
 	public static function TraerTodosLosImportes(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta = $objetoAccesoDato->RetornarConsulta("select * from importes");
+		$consulta = $objetoAccesoDato->RetornarConsulta("select * from importes order by id DESC");
 		$consulta->execute();			
 		$arrImportes = $consulta->fetchAll(PDO::FETCH_CLASS, "Importes");	
 		return $arrImportes;	

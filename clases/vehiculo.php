@@ -95,7 +95,7 @@ public function __construct($id=NULL){
 	
 	public static function TraerTodosLosVehiculos()	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("select * from vehiculos");
+		$consulta =$objetoAccesoDato->RetornarConsulta("select * from vehiculos order by id DESC");
 		$consulta->execute();			
 		$arrVehiculos= $consulta->fetchAll(PDO::FETCH_CLASS, "vehiculo");	
 		return $arrVehiculos;
