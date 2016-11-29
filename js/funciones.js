@@ -180,8 +180,8 @@ function EditarVehiculo(){
             }
             //$("#cuerpo").html(retorno);
             
-            alert(retorno.Mensaje);
-            console.log(retorno);
+            //alert(retorno.Mensaje);
+            //console.log(retorno);
             CerrarModal();
             FrmEstacionamiento();
         }
@@ -229,9 +229,8 @@ function BorrarVehiculo($id)
             }
             //$("#cuerpo").html(retorno);
             
-            alert(retorno.Mensaje);
+            //alert(retorno.Mensaje);
             console.log(retorno);
-            CerrarModal();
             FrmEstacionamiento();
         }
         ,function error(jqXHR, textStatus, errorThrown){
@@ -289,6 +288,129 @@ function Balances(){
     .then(
         function bien(retorno){
             $("#cuerpo").html(retorno);
+        }
+        ,function error(jqXHR, textStatus, errorThrown){
+            //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        }
+    );
+}
+
+function GrillaUsuarios(){
+     var queHago = "GrillaUsuarios";
+
+    $.ajax({
+        url: pagina,
+        type:'POST',
+        data:{
+            queHago:queHago,
+        }
+    })
+    .then(
+        function bien(retorno){
+            $("#cuerpo").html(retorno);
+        }
+        ,function error(jqXHR, textStatus, errorThrown){
+            //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        }
+    );
+}
+
+function BorrarUsuario(id){
+    
+    if (!confirm("ESTAS A PUNTO DE BORRAR PERMANENTEMENTE EL USUARIO\n¿Estas seguro?")) {
+        return;
+    }
+
+    var queHago = "BorrarUsuario";
+    var id = $id;
+
+    $.ajax({
+        url: pagina,
+        type:'POST',
+        dataType: 'json',
+        data:{
+            queHago:queHago,
+            id:id
+        }
+    })
+    .then(
+        function bien(retorno){
+            if (!retorno.Exito) {
+                alert(retorno.Mensaje);
+                return;
+            }
+            console.log(retorno);
+            FrmEstacionamiento();
+        }
+        ,function error(jqXHR, textStatus, errorThrown){
+            //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        }
+    );
+}
+
+function FrmNuevoUsuario(){
+    var queHago = "FrmNuevoUsuario";
+
+    $.ajax({
+        url: pagina,
+        type:'POST',
+        data:{
+            queHago:queHago,
+        }
+    })
+    .then(
+        function bien(retorno){
+            $("#divModal").html(retorno);
+            $('#myModal').modal({show:true,keyboard: false,backdrop: "static" });
+        }
+        ,function error(jqXHR, textStatus, errorThrown){
+            //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            alert("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+            console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        }
+    ); 
+}
+
+function AltaUsuario(){
+    if (!confirm("Estas seguro ingresar al usuario: " + $("#mail").val())) {
+        return;
+    } 
+
+    var queHago = "NuevoUsuario";
+
+    var mail = $('#usuario').val();
+    var password = $('#password').val();
+    var permiso = $('#permiso').val();
+
+    //VALIDAR STRING DE PATENTE
+
+     $.ajax({
+        url: pagina,
+        type:'POST',
+        dataType: 'json',
+        data:{
+            queHago:queHago,
+            mail:mail,
+            password: password,
+            permiso: permiso
+        }
+    })
+    .then(
+        function bien(retorno){
+
+            if (!retorno.Exito) {
+                alert(retorno.Mensaje);
+                $("#cuerpo").html(" ");
+                return;
+            }
+            CerrarModal();
+            GrillaUsuarios();
         }
         ,function error(jqXHR, textStatus, errorThrown){
             //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);

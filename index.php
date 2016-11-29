@@ -37,14 +37,14 @@ if (!isset($_SESSION['usuario'])) {
       
       <li class="dropdown active"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Administracion de Usuarios</a></li>
+          <li><a href="#" onclick="GrillaUsuarios()">Administración de Usuarios</a></li>
           <li><a href="#" onclick="FrmEstacionamiento()">Borrar Vehiculo Estacionado</a></li>
           <li class="divider"></li>
           <li class="dropdown-submenu">
             <a href="#" tabindex="-1">Grillas</a>
             <ul class="dropdown-menu">
               <li><a href="#" onclick = "FrmGrillaDeCobro()">Historial de Cobro</a></li>
-              <li><a href="#" onclick="Balances()">Balances</a></li>
+              <li><a href="#" onclick="Balances()">Balance del Año</a></li>
             </ul>
           </li>
         </ul>

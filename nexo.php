@@ -193,14 +193,61 @@ switch ($_POST['queHago']) {
 		break;
 
 	case "FrmGrillaDeCobro":
-
 		include_once 'partes/FrmGrillaDeCobro.php';
 		break;
 
 	case "Balances":
-
 		include_once 'partes/Balances.php';
 		break;
+
+	case "GrillaUsuarios":
+		include_once 'partes/GrillaUsuarios.php';
+		break;
+
+	case "BorrarUsuario":
+		require_once 'clases/usuario.php';
+
+		$respuesta['Exito'] = FALSE;
+		$respuesta['Mensaje'] = "ERROR INESPERADO: \n No se pudo borrar.";
+
+		if (!isset($_POST['id'])) {
+			echo json_encode($respuesta);
+		}
+
+		$id = $_POST['id'];
+
+		$objUsuario = new Usuario($id);
+
+		if ($objUsuario!=NULL) {
+			$respuesta['Exito'] = TRUE;
+			$respuesta['Mensaje'] = "Se pudo borrar el vehiculo.";
+			$r = Usuario::BorrarVehiculoPorId($objUsuario->id);			
+		}
+
+		echo json_encode($respuesta);
+		break;
+
+	case "FrmNuevoUsuario":
+		include_once 'partes/FrmModalUsuario.php';
+		break;
+
+	case "NuevoUsuario":
+		require_once 'clases/usuario.php';
+
+		$respuesta['Exito'] = FALSE;
+		$respuesta['Mensaje'] = "ERROR INESPERADO: \n No se pudo agregar al usuario.";
+
+		$mail = $_POST['mail'];
+		$password = $_POST['password'];
+		$permiso = $_POST['permiso'];
+
+		if ((!$mail) && (!$password) && (!$permiso)) {
+			$respuesta['Mensaje'] = "Se necesitan todos los campos.";
+		}
+
+
+		break;
+
 
 	default:
 		echo ":(";
