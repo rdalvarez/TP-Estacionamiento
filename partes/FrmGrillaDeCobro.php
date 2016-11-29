@@ -38,14 +38,17 @@ $arrImportes = Importes::TraerTodosLosImportes();
                       </thead>
                       <tbody>
                         <?php
+                        $balanceTotal = 0;                            
+
                         foreach ($arrImportes as $objImporte) 
                         {
+                            $balanceTotal += $objImporte->importe;
                             $fila = '<tr>';
                             $fila.='<td class="text-left scope="row"">'.$objImporte->id.'</td>';
                             $fila.='<td class="text-left">'.$objImporte->patente.'</td>';
                             $fila.='<td class="text-left">'.$objImporte->fecha ." ". $objImporte->hora .'</td>';
                             $fila.='<td class="text-left">'.$objImporte->fechaFinal." ".$objImporte->horaFinal.'</td>';
-                            $fila.='<td class="text-left">'.number_format($objImporte->tiempoTranscurrido/3600, 2, '.', '').'</td>';
+                            $fila.='<td class="text-left">'.number_format($objImporte->tiempoTranscurrido/3600, 2, '.', '').'</td>';//le doy formato 
 							$fila.='<td class="text-left">$ '.$objImporte->importe.'</td>';
                             $fila.='</tr>';
 
@@ -57,9 +60,9 @@ $arrImportes = Importes::TraerTodosLosImportes();
                 </div>
             </div>
         </div>
+
+    </div>
+    <div class="alert alert-info col-md-3" >
+           <strong>Importe Total:</strong>  <?php echo $balanceTotal; ?> .
     </div>
 </div>
-
-<script>
-    $('[data-toggle="tooltip"]').tooltip();
-</script>

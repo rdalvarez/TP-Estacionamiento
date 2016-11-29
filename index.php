@@ -14,7 +14,7 @@ if (!isset($_SESSION['usuario'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>my Estacionamiento</title>
+  <title>MyEstacionamiento</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,7 +29,7 @@ if (!isset($_SESSION['usuario'])) {
 <nav class="navbar navbar-inverse animated slideDown">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="https://github.com/rdalvarez/TP-Estacionamiento">Estacionamiento App <small>Git Hub</small></a> 
+      <a class="navbar-brand" href="https://github.com/rdalvarez/TP-Estacionamiento"  target="_blank">Estacionamiento<small> Git Hub</small></a> 
     </div>
     <ul class="nav navbar-nav">
 
@@ -38,19 +38,17 @@ if (!isset($_SESSION['usuario'])) {
       <li class="dropdown active"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Administracion de Usuarios</a></li>
-          <li><a onclick="FrmEstacionamiento()">Borrar Vehiculo Estacionado</a></li>
+          <li><a href="#" onclick="FrmEstacionamiento()">Borrar Vehiculo Estacionado</a></li>
           <li class="divider"></li>
           <li class="dropdown-submenu">
-            <a tabindex="-1">Grillas</a>
+            <a href="#" tabindex="-1">Grillas</a>
             <ul class="dropdown-menu">
-              <li><a tabindex="-1" onclick = "FrmGrillaDeCobro()">Historial de Cobro</a></li>
+              <li><a href="#" onclick = "FrmGrillaDeCobro()">Historial de Cobro</a></li>
               <li class="dropdown-submenu">
                 <a href="#">Balances</a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Anual</a></li>
-                  <li><a href="#">Mensual</a></li>
-                  <li><a href="#">Semanal</a></li>
-                  <li><a href="#">Día</a></li>
+                  <li><a href="#">Actual</a></li>
+                  <li><a href="#">Comparacion</a></li>
                 </ul>
               </li>
             </ul>
@@ -59,12 +57,12 @@ if (!isset($_SESSION['usuario'])) {
       </li>
       <?php } ?>
 
-      <li><a onclick="FrmNuevoVehiculo()">Nuevo Vehiculo</a></li>
-      <li><a onclick="FrmEstacionamiento()">Grilla de Vehiculos Estacionados</a></li>
+      <li><a href="#" onclick="FrmNuevoVehiculo()">Nuevo Vehiculo</a></li>
+      <li><a href="#" onclick="FrmEstacionamiento()">Grilla de Vehiculos Estacionados</a></li>
     </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Bienvenido <?php echo $_SESSION['usuario']; ?> <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bienvenido <?php echo $_SESSION['usuario']; ?> <b class="caret"></b></a>
           <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
               <li>
                 <div class="row">

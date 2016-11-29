@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
-    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
-</head>
-<body class="theme-light">
-<div id="chart"></div>
+<link id="themecss" rel="stylesheet" type="text/css" href="css/Shield UI.mis.css" />
+<!-- <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script> -->
+<script type="text/javascript" src="js/Shield UI-all.min.js"></script>
+
+<?php 
+require_once 'clases/importes.php';
+
+$arr = TraerTodosLosImportes();
+ ?>
+
 <script type="text/javascript">
     $(function () {
         var posts = [
@@ -58,5 +58,3 @@
         });
     });
 </script>
-</body>
-</html>
