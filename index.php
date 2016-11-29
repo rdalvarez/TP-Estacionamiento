@@ -44,13 +44,7 @@ if (!isset($_SESSION['usuario'])) {
             <a href="#" tabindex="-1">Grillas</a>
             <ul class="dropdown-menu">
               <li><a href="#" onclick = "FrmGrillaDeCobro()">Historial de Cobro</a></li>
-              <li class="dropdown-submenu">
-                <a href="#">Balances</a>
-                <ul class="dropdown-menu">
-                  <li><a href="#" onclick="Balances()">Año Actual</a></li>
-                  <li><a href="#">Comparacion</a></li>
-                </ul>
-              </li>
+              <li><a href="#" onclick="Balances()">Balances</a></li>
             </ul>
           </li>
         </ul>

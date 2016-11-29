@@ -1,11 +1,10 @@
 <link id="themecss" rel="stylesheet" type="text/css" href="css/Shield UI.mis.css" />
-<!-- <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script> -->
 <script type="text/javascript" src="js/Shield UI-all.min.js"></script>
 
 <?php 
 require_once 'clases/importes.php';
 
-$arr = TraerTodosLosImportes();
+$arr = Importes::TraerTodosLosImportes();
 
 $arrAux = array();
 
@@ -14,8 +13,8 @@ $arrAux = array();
 $Enero = $Febrero = $Marzo = $Abril = $Mayo = $Junio = $Julio = $Agosto = $Septiembre = $Octubre = $Noviembre = $Diciembre = 0;
 
 foreach ($arr as $obj) {
-	$fecha = explode("-", $obj->fecha); //saco el año
-	if ($fecha[0] = date("Y")) { //comparo el año actual
+	$fecha = explode("-", $obj->fechaFinal); //saco el año
+	if ($fecha[0] == date("Y")) { //comparo el año actual
 		switch ($fecha[1]) {
 			case '1': $Enero += $obj->importe; break;
 			case '2': $Febrero += $obj->importe; break;
@@ -34,6 +33,22 @@ foreach ($arr as $obj) {
 	}
 }
 ?>
+<div class="container slideUp">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Balance anual</h4>
+                </div>
+                <div class="panel-body">
+                    <div id="chart"></div>
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
+
+
 <script type="text/javascript">
     $(function () {
         var posts = [
@@ -43,15 +58,16 @@ foreach ($arr as $obj) {
             { category: "Abril", count: <?php echo $Abril; ?> },
             { category: "Mayo", count: <?php echo $Mayo; ?> },
             { category: "Junio", count: <?php echo $Junio; ?> },
-            { category: "Julio", count: <?php echo $Julio; ?>, color: "red" },
+            { category: "Julio", count: <?php echo $Julio; ?> },
             { category: "Agosto", count: <?php echo $Agosto; ?> },
-            { category: "Septiempre", count: <?php echo $Septiempre; ?> },
+            { category: "Septiempre", count: <?php echo $Septiembre; ?> },
             { category: "Octubre", count: <?php echo $Octubre; ?> },
             { category: "Noviembre", count: <?php echo $Noviembre; ?> },
             { category: "Diciembre", count: <?php echo $Diciembre; ?> }
         ];
         $("#chart").shieldChart({
             theme: "light",
+            isInverted: true,
             axisX: {
                 categoricalValues: $.map(posts, function (item) {
                     return item.category;

@@ -197,6 +197,11 @@ switch ($_POST['queHago']) {
 		include_once 'partes/FrmGrillaDeCobro.php';
 		break;
 
+	case "Balances":
+
+		include_once 'partes/Balances.php';
+		break;
+
 	default:
 		echo ":(";
 		break;
