@@ -326,7 +326,7 @@ function BorrarUsuario(id){
     }
 
     var queHago = "BorrarUsuario";
-    var id = $id;
+    var id = id;
 
     $.ajax({
         url: pagina,
@@ -344,7 +344,7 @@ function BorrarUsuario(id){
                 return;
             }
             console.log(retorno);
-            FrmEstacionamiento();
+            GrillaUsuarios();
         }
         ,function error(jqXHR, textStatus, errorThrown){
             //$("#Error").html("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
@@ -384,7 +384,7 @@ function AltaUsuario(){
 
     var queHago = "NuevoUsuario";
 
-    var mail = $('#usuario').val();
+    var mail = $('#mail').val();
     var password = $('#password').val();
     var permiso = $('#permiso').val();
 
@@ -396,7 +396,7 @@ function AltaUsuario(){
         dataType: 'json',
         data:{
             queHago:queHago,
-            mail:mail,
+            mail: mail,
             password: password,
             permiso: permiso
         }
@@ -406,7 +406,6 @@ function AltaUsuario(){
 
             if (!retorno.Exito) {
                 alert(retorno.Mensaje);
-                $("#cuerpo").html(" ");
                 return;
             }
             CerrarModal();

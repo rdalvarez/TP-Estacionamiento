@@ -47,8 +47,8 @@ $arrUsuarios = Usuario::TraerTodosLosUsuarios();
                             $fila.='<td class="text-left scope="row"">'.$objUsuario->id.'</td>';
                             $fila.='<td class="text-left">'.$objUsuario->usuario.'</td>';
                             $fila.='<td class="text-left">'.$objUsuario->permiso.'</td>';
-                            $fila.='<td class="text-center">
-                                <a data-toggle="tooltip" onclick="FrmEditarUsuario('.$objUsuario->id.')" class="btn btn-info btn-xs" title="EDITAR"><span class="glyphicon glyphicon-pencil"></span></a> ';
+                            $fila.='<td class="text-center">';
+                            //$fila.='<a data-toggle="tooltip" onclick="FrmEditarUsuario('.$objUsuario->id.')" class="btn btn-info btn-xs" title="EDITAR"><span class="glyphicon glyphicon-pencil"></span></a> ';
                             $fila.= '<a data-toggle="tooltip" onclick="BorrarUsuario('.$objUsuario->id.')" class="btn btn-danger btn-xs" title="BORRAR"><span class="glyphicon glyphicon-trash"></span></a>';
                             $fila.='</td></tr>';
 

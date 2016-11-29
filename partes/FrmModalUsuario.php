@@ -16,7 +16,12 @@
                   <label for="patente">Alta de Usuario</label>
                   <input type="text" class="form-control" id="mail" placeholder="Mail"/>
                   <input type="text" class="form-control" id="password" placeholder="Contraseña"/>
-                  <input type="text" class="form-control" id="permiso" placeholder="Permiso"/>
+                  <select class="form-control selcls" id="permiso">
+                   <optgroup label="Permiso">
+                    <option value="usuario" selected>Usuario</option>
+                    <option value="administrador">Administrador</option>
+                    </optgroup>
+                  </select>
                 </div>
               </form>
             </div>

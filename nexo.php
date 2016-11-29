@@ -216,12 +216,9 @@ switch ($_POST['queHago']) {
 
 		$id = $_POST['id'];
 
-		$objUsuario = new Usuario($id);
-
-		if ($objUsuario!=NULL) {
+		if (Usuario::BorrarUsuarioId($id)) {
 			$respuesta['Exito'] = TRUE;
-			$respuesta['Mensaje'] = "Se pudo borrar el vehiculo.";
-			$r = Usuario::BorrarVehiculoPorId($objUsuario->id);			
+			$respuesta['Mensaje'] = "Se pudo borrar el usuario.";
 		}
 
 		echo json_encode($respuesta);
@@ -235,16 +232,35 @@ switch ($_POST['queHago']) {
 		require_once 'clases/usuario.php';
 
 		$respuesta['Exito'] = FALSE;
-		$respuesta['Mensaje'] = "ERROR INESPERADO: \n No se pudo agregar al usuario.";
+		$respuesta['Mensaje'] = "";
 
 		$mail = $_POST['mail'];
 		$password = $_POST['password'];
 		$permiso = $_POST['permiso'];
 
-		if ((!$mail) && (!$password) && (!$permiso)) {
+		if (empty($mail) && empty($password) && empty($permiso)) { //valido campos vacios
 			$respuesta['Mensaje'] = "Se necesitan todos los campos.";
+			echo json_encode($respuesta);
+			break;
 		}
 
+		$objUser = new Usuario();
+		$objUser->usuario = $mail;
+		$objUser->clave = $password;
+		$objUser->permiso = $permiso;
+
+		if (Usuario::TraerUnUsuarioPorParametro($objUser->usuario)) {
+			$respuesta['Mensaje'] = "Ya se encuentra ingresado un usuario con el mismo mail.";
+			echo json_encode($respuesta);
+			break;
+		}
+
+		if (Usuario::InsertarUsuario($objUser) > 0) {
+			$respuesta['Exito'] = TRUE;
+			$respuesta['Mensaje'] = "Alta de usuario Exitosa.";
+		}
+
+		echo json_encode($respuesta);
 
 		break;
 
