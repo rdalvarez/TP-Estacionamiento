@@ -29,7 +29,7 @@ if (!isset($_SESSION['usuario'])) {
 <nav class="navbar navbar-inverse animated slideDown">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Estacionamiento App</a>
+      <a class="navbar-brand" href="https://github.com/rdalvarez/TP-Estacionamiento">Estacionamiento App <small>Git Hub</small></a> 
     </div>
     <ul class="nav navbar-nav">
 

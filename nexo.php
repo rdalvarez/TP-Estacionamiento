@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (!isset($_POST['queHago']) && !isset($_SESSION['usuario'])) {
-	header('Location: http://localhost:8080/php/');
-	//header('Location: http://myestacionamiento.esy.es');
+	//header('Location: http://localhost:8080/php/');
+	header('Location: http://myestacionamiento.esy.es');
 	return;
 }
 

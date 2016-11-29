@@ -4,9 +4,9 @@ session_start();
 
 if (isset($_SESSION['usuario'])) {
     //LOCAL HOST
-    header('Location: http://localhost/php');
+    //header('Location: http://localhost/php');
     //MY ESTACINAMIENTO
-    //header('Location: http://myestacionamiento.esy.es');
+    header('Location: http://myestacionamiento.esy.es');
 }
 
  ?>
@@ -44,7 +44,7 @@ if (isset($_SESSION['usuario'])) {
                             <h1 style="color: #FFFFFF"><strong >My Estacionamiento </strong> Login</h1>
                             <div class="description">
                             	<p style="color: #FFFFFF">
-	                            	Esta pagina fue hecha para un TP de la universidad <strong>(UTN)</strong>, espero que les guste.
+	                            	Esta pagina fue hecha para un Trabajo Practico de la universidad <strong>(UTN)</strong>, espero que les guste.
                             	</p>
                             </div>
                         </div>
