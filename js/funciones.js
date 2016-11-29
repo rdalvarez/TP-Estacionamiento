@@ -1,9 +1,3 @@
-// $(document).ready(function(){
-//     //Handles menu drop down
-//     $('.dropdown-menu').find('form').click(function (e) {
-//         e.stopPropagation();
-//     });
-// });
 var pagina = "nexo.php";
 
 
@@ -280,4 +274,8 @@ function FrmGrillaDeCobro(){
             console.log("ERROR: "+jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
         }
     );
+}
+
+function Balances(){
+    
 }

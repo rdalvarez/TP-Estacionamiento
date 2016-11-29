@@ -6,22 +6,49 @@
 require_once 'clases/importes.php';
 
 $arr = TraerTodosLosImportes();
- ?>
 
+$arrAux = array();
+
+//saco solo 12 meses atras contando el actual
+
+$Enero = $Febrero = $Marzo = $Abril = $Mayo = $Junio = $Julio = $Agosto = $Septiembre = $Octubre = $Noviembre = $Diciembre = 0;
+
+foreach ($arr as $obj) {
+	$fecha = explode("-", $obj->fecha); //saco el año
+	if ($fecha[0] = date("Y")) { //comparo el año actual
+		switch ($fecha[1]) {
+			case '1': $Enero += $obj->importe; break;
+			case '2': $Febrero += $obj->importe; break;
+			case '3': $Marzo += $obj->importe; break;
+			case '4': $Abril += $obj->importe; break;
+			case '5': $Mayo += $obj->importe; break;
+			case '6': $Junio += $obj->importe; break;
+			case '7': $Julio += $obj->importe; break;
+			case '8': $Agosto += $obj->importe; break;
+			case '9': $Septiembre += $obj->importe; break;
+			case '10': $Octubre += $obj->importe; break;
+			case '11': $Noviembre += $obj->importe; break;
+			case '12': $Diciembre += $obj->importe; break;
+			default: echo ":(";	break;
+		}
+	}
+}
+?>
 <script type="text/javascript">
     $(function () {
         var posts = [
-            { category: "Finance", count: 3 },
-            { category: "Law", count: 13 },
-            { category: "Business", count: 17 },
-            { category: "Health", count: 17 },
-            { category: "Sport", count: 23 },
-            { category: "Celebrity", count: 17 },
-            { category: "IT", count: 7, color: "red" },
-            { category: "Technology", count: 12 },
-            { category: "Geek", count: 5 },
-            { category: "Politics", count: 7 },
-            { category: "Religion", count: 17 }
+            { category: "Enero", count: <?php echo $Enero; ?> },
+            { category: "Febrero", count: <?php echo $Febrero; ?> },
+            { category: "Marzo", count: <?php echo $Marzo; ?> },
+            { category: "Abril", count: <?php echo $Abril; ?> },
+            { category: "Mayo", count: <?php echo $Mayo; ?> },
+            { category: "Junio", count: <?php echo $Junio; ?> },
+            { category: "Julio", count: <?php echo $Julio; ?>, color: "red" },
+            { category: "Agosto", count: <?php echo $Agosto; ?> },
+            { category: "Septiempre", count: <?php echo $Septiempre; ?> },
+            { category: "Octubre", count: <?php echo $Octubre; ?> },
+            { category: "Noviembre", count: <?php echo $Noviembre; ?> },
+            { category: "Diciembre", count: <?php echo $Diciembre; ?> }
         ];
         $("#chart").shieldChart({
             theme: "light",
@@ -32,7 +59,7 @@ $arr = TraerTodosLosImportes();
             },
             axisY: {
                 title: {
-                    text: "Importe"
+                    text: "Ganancia"
                 }
             },
             seriesSettings: {
@@ -43,11 +70,11 @@ $arr = TraerTodosLosImportes();
                 }
             },
             primaryHeader: {
-                text: "Balance Mensual"
+                text: "Importes del Año <?php echo date("Y"); ?>"
             },
             dataSeries: [{
                 seriesType: "bar",
-                collectionAlias: "Ganancia por mes",
+                collectionAlias: "Ganancia del mes",
                 data: $.map(posts, function (item) {
                     return {
                         y: item.count,
@@ -58,3 +85,4 @@ $arr = TraerTodosLosImportes();
         });
     });
 </script>
+

@@ -47,7 +47,7 @@ if (!isset($_SESSION['usuario'])) {
               <li class="dropdown-submenu">
                 <a href="#">Balances</a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Actual</a></li>
+                  <li><a href="#" onclick="Balances()">Año Actual</a></li>
                   <li><a href="#">Comparacion</a></li>
                 </ul>
               </li>
